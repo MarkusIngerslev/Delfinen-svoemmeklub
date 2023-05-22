@@ -54,7 +54,7 @@ async function showCompetitiveMember(memberObject) {
         <td>${memberObject.disciplin}</td>
         <td>${memberObject.timeMiliSeconds}ms</td>
         <td>${memberObject.date}</td>
-        <td><button class="coachTableUpdateBtn">Update svømmetid</button></td>
+        <td><button class="coachTableUpdateBtn">Opdater svømmetid</button></td>
       </tr>
     `
   );

@@ -193,8 +193,10 @@
       <!-- DOM-manipulation for treasurer/cashier-->
       <section id="forCashier" class="view-content">
         <!----------- serarch field and search button ----------->
-        <input type="search" id="input-search-cashier" placeholder="Søg" />
-        <button id="input-search-button-for-cashier">Search</button>
+        <div id="search-cashier">
+          <input type="search" id="input-search-cashier" placeholder="Søg" />
+          <button id="input-search-button-for-cashier">Search</button>
+        </div>
         <article id="accounting-section">
           <h2>Kontingent oversigt:</h2>
           <p>Kontingenter: <span id="kontingenter"></span></p>
@@ -283,7 +285,7 @@
           <li id="cashier-dialog-sub-end">Medlemskab ophører:</li>
           <li id="cashier-dialog-restance">I restance:</li>
         </ul>
-        <button id="cashier-dialog-btn-close">Close?</button>
+        <button id="cashier-dialog-btn-close">Close</button>
       </article>
     </dialog>
 
@@ -301,7 +303,7 @@
           <li id="coach-dialog-coach">Træner:</li>
           <li id="coach-dialog-active">Aktiv:</li>
         </ul>
-        <button id="coach-dialog-btn-close">luk?</button>
+        <button id="coach-dialog-btn-close">Luk</button>
       </article>
     </dialog>
 
@@ -354,49 +356,29 @@
 
     <!-- dialog - delete post chairman -->
     <dialog id="dialog-delete-member">
-      <h2>Do you want to delete this member?</h2>
+      <h2>Vil du slette dette medlem?</h2>
       <br />
-      <h3 id="dialog-delete-member-name">Name of member</h3>
+      <h3 id="dialog-delete-member-name">Navn på medlem:</h3>
       <br />
       <br />
       <br />
       <form method="dialog" id="form-delete-member">
-        <button id="confirm-delete-btn" data-id="${member.id}">Yes</button>
-        <button type="button" id="deny-delete-btn" class="btn-cancel">No</button>
+        <button id="confirm-delete-btn" data-id="${member.id}">Ja</button>
+        <button type="button" id="deny-delete-btn" class="btn-cancel">Nej</button>
       </form>
-      <!-- Filter Chairman-->
-      <div id="sort-filter-members">
-        <label for="filter-by" id="filter-by-label">Filter: </label>
-        <select name="filtrering" id="filter-by">
-          <option value="konkurrencesvømmer">Konkurrencesvømmere</option>
-          <option value="seniorsvømmer">Seniorsvømmere</option>
-          <option value="motionistsvømmer">Motionistsvømmere</option>
-          <option value="svømmeremedtræner">Svømmere med træner</option>
-        </select>
-        <!--Sort Chairman-->
-        <label for="sort-by" id="sort-by-label">Sort by: </label>
-        <select name="sortering" id="sort-by">
-          <option value="a-z">A-Z</option>
-          <option value="z-a">Z-A</option>
-          <option value="age-low-to-high">Alder, lav til høj</option>
-          <option value="age-high-to-low">Alder, høj til lav</option>
-          <option value="activityform">Aktivitetsform</option>
-          <option value="coach">Træner</option>
-        </select>
-      </div>
     </dialog>
 
     <!-- dialog - update swimtime coach -->
     <dialog id="update-swimtime-coach-dialog">
-      <h2>Update svømmetid</h2>
+      <h2>Opdater svømmetid</h2>
       <form id="update-swimtime-coach-form" method="dialog">
         <p id="update-swimtime-coach-person"></p>
         <p id="update-swimtime-coach-oldtime"></p>
         <label for="update-swimtime-coach">Ny svømme tid i ms. </label>
         <input type="number" name="time" id="update-swimtime-coach" placeholder="skriv nu tid..." required />
         <div id="coach-update-btn-container">
-          <button type="button" class="btn-close-coach">Close</button>
-          <button type="submit">Update</button>
+          <button type="submit" class="btn-update-coach">Opdater</button>
+          <button type="button" class="btn-close-coach">Luk</button>
         </div>
       </form>
     </dialog>
