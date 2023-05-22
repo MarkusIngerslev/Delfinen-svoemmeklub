@@ -295,8 +295,7 @@ p {
 .btn-update,
 .btn-delete,
 .coachTableUpdateBtn,
-#coach-dialog-btn-close,
-button {
+#coach-dialog-btn-close {
   background-color: aquamarine;
   padding: 0.5em 1em;
   border-color: black;
