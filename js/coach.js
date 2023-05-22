@@ -1,4 +1,4 @@
-import { getMembersCoach, updateSwimtimeResult } from "./rest-data.js";
+import { updateSwimtimeResult } from "./rest-data.js";
 import { results, updateMembersTable } from "./script.js";
 
 // ----- global variable ----- //
@@ -30,7 +30,7 @@ async function showCompetitiveMembers(results, members) {
   }
 
   coachResults = results;
-  console.log(coachResults);
+  // console.log(coachResults);
   showCompetitiveMemberLoop(coachResults);
 }
 
@@ -47,7 +47,6 @@ function showCompetitiveMemberLoop(results) {
 }
 
 async function showCompetitiveMember(memberObject) {
-  // const member = await getMembersCoach(memberObject.memberId);
   document.querySelector("#coach-members-tbody").insertAdjacentHTML(
     "beforeend",
     /*html*/ `
