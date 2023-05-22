@@ -273,8 +273,8 @@ td {
 }
 #for-coach-article {
   background-image: url(img/coach.jpg);
-  background-size: 50%;
-  background-position: top;
+  background-size: 70%;
+  background-position: left;
   width: 100%;
   height: cover;
   padding-top: 50px;
