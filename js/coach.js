@@ -21,6 +21,10 @@ async function showCompetitiveMembers(results, members) {
   document.querySelector("#coachFilterTop5").addEventListener("change", filterforCoach);
   document.querySelector("#coachFilterJunior").addEventListener("change", filterforCoach);
   document.querySelector("#coachFilterSenior").addEventListener("change", filterforCoach);
+  document.querySelector("#coachFilterCrawl").addEventListener("change", filterforCoach);
+  document.querySelector("#coachFilterRygCrawl").addEventListener("change", filterforCoach);
+  document.querySelector("#coachFilterBrystsvoemning").addEventListener("change", filterforCoach);
+  document.querySelector("#coachFilterButterfly").addEventListener("change", filterforCoach);
 
   for (const result of results) {
     const member = members.find((member) => member.id === result.memberId);
@@ -61,12 +65,10 @@ async function showCompetitiveMember(memberObject) {
 
   document.querySelector("#coach-members-tbody tr:last-child").addEventListener("click", showAthlete);
 
-  document
-    .querySelector("#coach-members-tbody tr:last-child .coachTableUpdateBtn")
-    .addEventListener("click", (event) => {
-      event.stopPropagation();
-      coachTableUpdate();
-    });
+  document.querySelector("#coach-members-tbody tr:last-child .coachTableUpdateBtn").addEventListener("click", (event) => {
+    event.stopPropagation();
+    coachTableUpdate();
+  });
 
   function showAthlete(event) {
     console.log("athlete clicked");
@@ -76,18 +78,12 @@ async function showCompetitiveMember(memberObject) {
     document.querySelector("#coach-dialog-btn-close").addEventListener("click", closeCoachDialog);
 
     // setting textcontent value equal to clicked member
-    document.querySelector(
-      "#coach-dialog-name"
-    ).textContent = `Navn: ${memberObject.member.firstname} ${memberObject.lastname}`;
+    document.querySelector("#coach-dialog-name").textContent = `Navn: ${memberObject.member.firstname} ${memberObject.lastname}`;
     document.querySelector("#coach-dialog-age").textContent = `Alder: ${memberObject.member.age}`;
     document.querySelector("#coach-dialog-phone").textContent = `Telefon: ${memberObject.member.phone}`;
     document.querySelector("#coach-dialog-mail").textContent = `E-mail: ${memberObject.member.email}`;
-    document.querySelector(
-      "#coach-dialog-activity-form"
-    ).textContent = `Aktivitets-form: ${memberObject.member.activityForm}`;
-    document.querySelector(
-      "#coach-dialog-disciplines"
-    ).textContent = `Disciplin(er): ${memberObject.member.disciplines}`;
+    document.querySelector("#coach-dialog-activity-form").textContent = `Aktivitets-form: ${memberObject.member.activityForm}`;
+    document.querySelector("#coach-dialog-disciplines").textContent = `Disciplin(er): ${memberObject.member.disciplines}`;
     document.querySelector("#coach-dialog-coach").textContent = `Træner: ${memberObject.member.coach}`;
     document.querySelector("#coach-dialog-active").textContent = `Aktiv: ${memberObject.member.active}`;
 
@@ -101,9 +97,7 @@ async function showCompetitiveMember(memberObject) {
     document.querySelector(
       "#update-swimtime-coach-person"
     ).textContent = `Svømme tid for: ${memberObject.member.firstname} ${memberObject.member.lastname}`;
-    document.querySelector(
-      "#update-swimtime-coach-oldtime"
-    ).textContent = `Den nuværende tid er: ${memberObject.timeMiliSeconds}ms`;
+    document.querySelector("#update-swimtime-coach-oldtime").textContent = `Den nuværende tid er: ${memberObject.timeMiliSeconds}ms`;
     updateForm.time.value = memberObject.timeMiliSeconds;
     updateForm.setAttribute("data-id", memberObject.id);
     document.querySelector("#update-swimtime-coach-dialog").showModal();
@@ -172,6 +166,10 @@ async function filterforCoach() {
   const top5 = document.querySelector("#coachFilterTop5");
   const junior = document.querySelector("#coachFilterJunior");
   const senior = document.querySelector("#coachFilterSenior");
+  const crawl = document.querySelector("#coachFilterCrawl");
+  const rygCrawl = document.querySelector("#coachFilterRygCrawl");
+  const brystSvoemning = document.querySelector("#coachFilterBrystsvoemning");
+  const butterfly = document.querySelector("#coachFilterButterfly");
 
   if (junior.checked) {
     filterList = results.filter(isJunior);
@@ -189,6 +187,26 @@ async function filterforCoach() {
     filterList.splice(5);
     console.log(filterList);
     showCompetitiveMemberLoop(filterList);
+  } else if (crawl.checked) {
+    filterList = results.filter(isCrawl);
+    isFilterOn = true;
+    console.log(filterList);
+    showCompetitiveMemberLoop(filterList);
+  } else if (rygCrawl.checked) {
+    filterList = results.filter(isRygCrawl);
+    isFilterOn = true;
+    console.log(filterList);
+    showCompetitiveMemberLoop(filterList);
+  } else if (brystSvoemning.checked) {
+    filterList = results.filter(isBrystSvoemning);
+    isFilterOn = true;
+    console.log(filterList);
+    showCompetitiveMemberLoop(filterList);
+  } else if (butterfly.checked) {
+    filterList = results.filter(isButterfly);
+    isFilterOn = true;
+    console.log(filterList);
+    showCompetitiveMemberLoop(filterList);
   } else {
     filterList = results;
     isFilterOn = false;
@@ -201,10 +219,45 @@ function top5Results(result1, result2) {
 }
 
 function isJunior(result) {
+  console.log(result);
   return result.member.age < 18 && result.member.activityForm === "konkurrence-svømmer";
 }
 function isSenior(result) {
+  console.log(result);
   return result.member.age >= 18 && result.member.activityForm === "konkurrence-svømmer";
 }
+function isCrawl(result) {
+  //console.log(result)
+  return result.disciplin === "crawl";
+}
+function isRygCrawl(result) {
+  //console.log(result)
+  return result.disciplin === "ryg-crawl";
+}
+function isBrystSvoemning(result) {
+  //console.log(result)
+  return result.disciplin === "bryst-svømning";
+}
+function isButterfly(result) {
+  //console.log(result)
+  return result.disciplin === "butterfly";
+}
+
+// if (junior.checked || senior.checked || top5.checked || crawl.checked || rygCrawl.checked || brystSvoemning.checked || butterfly.checked) {
+//   filterList = results.filter(checkFilters);
+//   isFilterOn = true;
+//   showCompetitiveMemberLoop(filterList);
+// } else {
+//   isFilterOn = false;
+//   showCompetitiveMemberLoop(results);
+// }
+
+// function checkFilters(member) {
+//   if (condition) {
+    
+//   } else if (condition) {
+    
+//   }
+// }
 
 export { showCompetitiveMembers };
