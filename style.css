@@ -256,13 +256,47 @@ td {
   background-position: center;
   width: 100%;
   height: cover;
-  padding-left: 100px;
+  padding-left: 180px;
   padding-top: 50px;
   padding-bottom: 250px;
 }
 
+#forCashier {
+  background-image: url(img/cashier.jpg);
+  background-size: 30%;
+  background-position: left;
+  width: 100%;
+  height: cover;
+  padding-left: 180px;
+  padding-top: 50px;
+  padding-bottom: 250px;
+}
+#for-coach-article {
+  background-image: url(img/coach.jpg);
+  background-size: 50%;
+  background-position: top;
+  width: 100%;
+  height: cover;
+  padding-top: 50px;
+  padding-bottom: 250px;
+  padding-left: 20px;
+}
+#forCoachSort-container {
+  padding-bottom: 20px;
+}
+
+#search-cashier {
+  padding-left: 150px;
+}
+
+p {
+  font-weight: bold;
+}
 .btn-update,
-.btn-delete {
+.btn-delete,
+.coachTableUpdateBtn,
+#coach-dialog-btn-close,
+button {
   background-color: aquamarine;
   padding: 0.5em 1em;
   border-color: black;
@@ -283,6 +317,19 @@ td {
   cursor: pointer;
   align-content: left;
   width: 20%;
+}
+
+.btn-close-coach,
+.btn-update-coach {
+  background-color: aquamarine;
+  padding: 0.5em 1em;
+  border-color: black;
+  font-size: small;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  align-content: left;
+  width: 40%;
 }
 
 h1 {
@@ -319,7 +366,8 @@ h3 {
 #submit-btn-create,
 #reset-btn-create,
 #submit-btn-update,
-#reset-btn-update {
+#reset-btn-update,
+#cashier-dialog-btn-close {
   background-color: aquamarine;
   padding: 0.5em 1em;
   border-color: black;
@@ -334,6 +382,7 @@ h3 {
 #form-create,
 #form-update-chairman {
   display: grid;
+  align-items: center;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(12, 1fr);
   text-shadow: 4px 4px 4px rgba(76, 57, 241, 0.1);
@@ -343,7 +392,6 @@ h3 {
   color: #070707;
   background-color: cornflowerblue;
 }
-#create-member,
 #update-member,
 #dialog-delete-member {
   margin-top: 6px;
@@ -351,6 +399,15 @@ h3 {
   top: 15%;
   border: 2px solid aquamarine;
   width: 800px;
+  align-items: center;
+}
+
+#create-member {
+  margin-top: 6px;
+  background-color: cornflowerblue;
+  top: 15%;
+  border: 2px solid aquamarine;
+  width: 730px;
   align-items: center;
 }
 #create-text,
@@ -394,28 +451,34 @@ h3 {
 #for-coach-article th,
 #for-coach-article td,
 #cashier-members th,
-#cashier-members td {
+#cashier-members td,
+#membersTable th,
+#membersTable td {
   padding: 10px;
   text-align: left;
 }
 
 #for-coach-article th,
-#cashier-members th {
+#cashier-members th,
+#membersTable th {
   background-color: #bfbdc1;
 }
 
 #coach-members-tbody tr,
-#cashier-members tr {
+#cashier-members tr,
+#membersTable tr {
   background-color: #e1e0e2;
 }
 
 #coach-members,
-#cashier-members {
+#cashier-members,
+#membersTable {
   background-color: black;
 }
 
 #for-coach-article tr:hover,
-#cashier-members tr:hover {
+#cashier-members tr:hover,
+#membersTable tr:hover {
   background-color: #cfc5c5;
   opacity: 1;
 }
