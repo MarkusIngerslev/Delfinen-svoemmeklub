@@ -35,9 +35,14 @@ async function getMembersCoach(id) {
 }
 
 // === UPDATE Result Coach === //
-async function updateSwimtimeResult(id, timeResult) {
+async function updateSwimtimeResult(id, timeMiliSeconds, date, memberId, disciplin, tournamentName, tournament) {
   const timeToUpdate = {
-    timeMiliSeconds: timeResult,
+    memberId: memberId,
+    disciplin: disciplin,
+    timeMiliSeconds: Number(timeMiliSeconds),
+    date: date,
+    tournamentName: tournamentName,
+    tournament: Boolean(tournament),
   };
   const resultAsJson = JSON.stringify(timeToUpdate);
 
