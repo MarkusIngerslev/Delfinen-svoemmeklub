@@ -100,14 +100,40 @@ async function showCompetitiveMember(memberObject) {
   }
   function coachTableUpdate() {
     const updateForm = document.querySelector("#update-swimtime-coach-form");
+    // sætter personen navn i form
     document.querySelector(
       "#update-swimtime-coach-person"
     ).textContent = `Svømme tid for: ${memberObject.member.firstname} ${memberObject.member.lastname}`;
+    // sætter p til at vise den nuværende/gamle bedste tid
     document.querySelector(
       "#update-swimtime-coach-oldtime"
     ).textContent = `Den nuværende tid er: ${memberObject.timeMiliSeconds}ms`;
-    updateForm.time.value = memberObject.timeMiliSeconds;
+    // sætter den nuværende/gamle bedste tid ind i input
+    updateForm.coachUpdatetime.value = memberObject.timeMiliSeconds;
     updateForm.setAttribute("data-id", memberObject.id);
+
+    // tildeler skjulte elementer ekstra data til at kunne opdate database
+    updateForm.coachUpdateMemberId.value = memberObject.memberId;
+    updateForm.coachUpdateDisciplin.value = memberObject.disciplin;
+    updateForm.coachUpdateTournamentName.value = memberObject.tournamentName;
+    updateForm.coachUpdateTournament.value = memberObject.tournament;
+    // updateForm.coachUpdateDate.value = memberObject.date;
+
+    // dags dato
+    const dateInput = document.querySelector("#coachUpdateDate");
+    const currentDate = new Date(); // nyt dateobjekt
+
+    // henter de 3 forskellige variabler dag, måned og år
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0"); //padStart er en måde at sikre at cifret altid er 2 langt.
+    // når det gøres på denne måde for man månederne mellem 00-11 derfor +1 for at få det vist som 01-12
+
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    const year = currentDate.getFullYear();
+    // sammen sæt de 3 variabler i et format: "MM . DD . åååå"
+    const dateString = `${month}/${day}/${year}`;
+    // sæt date input til dags dato
+    dateInput.value = dateString;
+
     document.querySelector("#update-swimtime-coach-dialog").showModal();
   }
 }
@@ -125,13 +151,27 @@ function cancelUpdate() {
 }
 
 async function updateCoachSwimTime(event) {
-  // console.log(event);
   const form = event.target;
-  const swimtime = document.querySelector("#update-swimtime-coach").value;
+  let tournament;
+  // ting der kan ændres i form
+  const swimtime = form.coachUpdatetime.value;
+  const date = form.coachUpdateDate.value;
+
+  // ekstra data som skal sende med til database
+  const memberId = form.coachUpdateMemberId.value;
+  const disciplin = form.coachUpdateDisciplin.value;
+  const tournamentName = form.coachUpdateTournamentName.value;
+
+  if (form.coachUpdateTournament.value === "false") {
+    tournament = false;
+  } else if (form.coachUpdateTournament.value === "true") {
+    tournament = true;
+  }
+
+  console.log("-- UpdateCoachSwimTime --");
 
   const id = form.getAttribute("data-id");
-  const response = await updateSwimtimeResult(id, swimtime);
-  console.log();
+  const response = await updateSwimtimeResult(id, swimtime, date, memberId, disciplin, tournamentName, tournament);
   if (response.ok) {
     console.log("result updatet");
     updateMembersTable();
