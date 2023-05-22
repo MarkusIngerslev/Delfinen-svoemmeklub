@@ -198,29 +198,29 @@ async function filterforCoach() {
     console.log(filterList);
     showCompetitiveMemberLoop(filterList);
   } else if (crawl.checked) {
-    filterList = results.filter(isCrawl);
+    filterList = coachResults.filter(isCrawl);
     isFilterOn = true;
     console.log(filterList);
     showCompetitiveMemberLoop(filterList);
   } else if (rygCrawl.checked) {
-    filterList = results.filter(isRygCrawl);
+    filterList = coachResults.filter(isRygCrawl);
     isFilterOn = true;
     console.log(filterList);
     showCompetitiveMemberLoop(filterList);
   } else if (brystSvoemning.checked) {
-    filterList = results.filter(isBrystSvoemning);
+    filterList = coachResults.filter(isBrystSvoemning);
     isFilterOn = true;
     console.log(filterList);
     showCompetitiveMemberLoop(filterList);
   } else if (butterfly.checked) {
-    filterList = results.filter(isButterfly);
+    filterList = coachResults.filter(isButterfly);
     isFilterOn = true;
     console.log(filterList);
     showCompetitiveMemberLoop(filterList);
   } else {
     filterList = coachResults;
     isFilterOn = false;
-    showCompetitiveMemberLoop(results);
+    showCompetitiveMemberLoop(coachResults);
   }
 }
 
@@ -252,22 +252,5 @@ function isButterfly(result) {
   //console.log(result)
   return result.disciplin === "butterfly";
 }
-
-// if (junior.checked || senior.checked || top5.checked || crawl.checked || rygCrawl.checked || brystSvoemning.checked || butterfly.checked) {
-//   filterList = results.filter(checkFilters);
-//   isFilterOn = true;
-//   showCompetitiveMemberLoop(filterList);
-// } else {
-//   isFilterOn = false;
-//   showCompetitiveMemberLoop(results);
-// }
-
-// function checkFilters(member) {
-//   if (condition) {
-    
-//   } else if (condition) {
-    
-//   }
-// }
 
 export { showCompetitiveMembers };
