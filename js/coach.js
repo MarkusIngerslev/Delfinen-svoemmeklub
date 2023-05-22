@@ -5,6 +5,7 @@ import { results, updateMembersTable } from "./script.js";
 
 let filterList;
 let isFilterOn;
+let coachResults;
 
 // ========== show competitve members ========== //
 //import { members } from "./script.js";
@@ -32,7 +33,9 @@ async function showCompetitiveMembers(results, members) {
     // console.log(result);
   }
 
-  showCompetitiveMemberLoop(results);
+  coachResults = results;
+  console.log(coachResults);
+  showCompetitiveMemberLoop(coachResults);
 }
 
 function showCompetitiveMemberLoop(results) {
@@ -135,23 +138,27 @@ async function updateCoachSwimTime(event) {
 // ========== Sort ========== //
 function sortByForCoach(event) {
   const value = event.target.value;
+  console.log("--sortByForCoach--");
 
-  if (value === "none") {
+  if (value === "none" && !isFilterOn) {
     updateMembersTable();
+  } else if (value === "none" && isFilterOn) {
+    console.log("fjern checkbox først");
   } else if (value === "age" && !isFilterOn) {
-    results.sort(compareAge);
-    showCompetitiveMemberLoop(results);
+    coachResults.sort(compareAge);
+    console.log();
+    console.log(coachResults);
+    showCompetitiveMemberLoop(coachResults);
   } else if (value === "age" && isFilterOn) {
     filterList.sort(compareAge);
     showCompetitiveMemberLoop(filterList);
   } else if (value === "time" && !isFilterOn) {
-    results.sort(compareTime);
-    showCompetitiveMemberLoop(results);
+    coachResults.sort(compareTime);
+    showCompetitiveMemberLoop(coachResults);
   } else if (value === "time" && isFilterOn) {
     filterList.sort(compareTime);
     showCompetitiveMemberLoop(filterList);
   }
-
   function compareAge(result1, result2) {
     return result1.member.age - result2.member.age;
   }
@@ -172,19 +179,22 @@ async function filterforCoach() {
   const butterfly = document.querySelector("#coachFilterButterfly");
 
   if (junior.checked) {
-    filterList = results.filter(isJunior);
+    filterList = coachResults.filter(isJunior);
     isFilterOn = true;
+    console.log("--filter for junior checked--");
     console.log(filterList);
     showCompetitiveMemberLoop(filterList);
   } else if (senior.checked) {
-    filterList = results.filter(isSenior);
+    filterList = coachResults.filter(isSenior);
     isFilterOn = true;
+    console.log("--filter for senior checked--");
     console.log(filterList);
     showCompetitiveMemberLoop(filterList);
   } else if (top5.checked) {
-    filterList = results.sort(top5Results).slice(); // .slice bliver brugt til at lave en copy results, som splice går ind og ændre.
+    filterList = coachResults.sort(top5Results).slice(); // .slice bliver brugt til at lave en copy results, som splice går ind og ændre.
     isFilterOn = true;
     filterList.splice(5);
+    console.log("--filter for top5--");
     console.log(filterList);
     showCompetitiveMemberLoop(filterList);
   } else if (crawl.checked) {
@@ -208,7 +218,7 @@ async function filterforCoach() {
     console.log(filterList);
     showCompetitiveMemberLoop(filterList);
   } else {
-    filterList = results;
+    filterList = coachResults;
     isFilterOn = false;
     showCompetitiveMemberLoop(results);
   }
