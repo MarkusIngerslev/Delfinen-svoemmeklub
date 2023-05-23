@@ -7,48 +7,39 @@ const coach = document.querySelector("#login-coach");
 const username = "1234";
 const password = "1234";
 
-// Funktionen til at bestemme, hvad der vises i navigationslinjen efter login
+// ========== Vælg, hvilken funktion, der kaldes efter login ========== //
 function determineWhatIsShownInNavbar() {
-  const enteredPassword = document.querySelector("#password").value;
-  const enteredUsername = document.querySelector("#username").value;
-
-  if (chairman.checked && password === enteredPassword && username === enteredUsername) {
+  if (
+    chairman.checked &&
+    password === document.querySelector("#password").value &&
+    username === document.querySelector("#username").value
+  ) {
     addNewLinksToNavBarForChairman();
-    saveLoginStatus("formand");
-  } else if (cashier.checked && password === enteredPassword && username === enteredUsername) {
+  } else if (
+    cashier.checked &&
+    password === document.querySelector("#password").value &&
+    username === document.querySelector("#username").value
+  ) {
     addNewLinkToNavBarForCashier();
-    saveLoginStatus("kasserer");
-  } else if (coach.checked && password === enteredPassword && username === enteredUsername) {
+  } else if (
+    coach.checked &&
+    password === document.querySelector("#password").value &&
+    username === document.querySelector("#username").value
+  ) {
     addNewLinkToNavBarForCoach();
-    saveLoginStatus("træner");
   } else {
-    console.log("Ingen gyldigt login fundet");
+    console.log("Ingen login-navne fundet");
     document.querySelector("#error-message-log-in").showModal();
-    document.querySelector("#ok-button-error-message").addEventListener("click", closeErrorMessageLogIn);
+    document.querySelector("#ok-button-error-message").addEventListener("click", closeErrorMessgeLogIn);
   }
 }
 
-function closeErrorMessageLogIn() {
+function closeErrorMessgeLogIn() {
   document.querySelector("#error-message-log-in").close();
-  console.log("Fejlbesked lukkes");
+  console.log("fejlbesked lukkes");
 }
 
-// Funktionen til at gemme login-status i localStorage
-function saveLoginStatus(role) {
-  localStorage.setItem("loginStatus", role);
-}
-
-// Funktionen til at indlæse login-status fra localStorage
-function loadLoginStatus() {
-  return localStorage.getItem("loginStatus");
-}
-
-// Funktionen til at fjerne login-status fra localStorage
-function clearLoginStatus() {
-  localStorage.removeItem("loginStatus");
-}
-
-// Funktionen til at indsætte nye links i navigationslinjen for formanden
+// ========== Indsæt nye links i navbar for formand ========== //
 function addNewLinksToNavBarForChairman() {
   const linksForChairman =
     /*html*/
@@ -65,9 +56,9 @@ function addNewLinksToNavBarForChairman() {
   hideLogIn();
   showLogOut();
 }
-
-// Funktionen til at indsætte et link i navigationslinjen for kassereren
+// ========== Indsæt links i navbar for kasserer ========== //
 function addNewLinkToNavBarForCashier() {
+  //  if (passwordTreasurer && usernameTreasurer) {
   const linkForCashier =
     /*html*/
     `<section>
@@ -81,8 +72,9 @@ function addNewLinkToNavBarForCashier() {
   showLogOut();
 }
 
-// Funktionen til at indsætte et link i navigationslinjen for træneren
+// ========== Indsæt links i navbar for træner ========== //
 function addNewLinkToNavBarForCoach() {
+  // if (passwordCoach && usernameCoach) {
   const linkForCoach =
     /*html*/
     `<section>
@@ -97,24 +89,23 @@ function addNewLinkToNavBarForCoach() {
   showLogOut();
 }
 
-// Funktionen til at skjule log ind-knappen
+// ========== Hide login-in button ========== //
 function hideLogIn() {
   document.querySelector("#login-btn").classList.add("hidden");
 }
 
-// Funktionen til at vise log ud-knappen
+// ========== Show log-out-button ========== //
 function showLogOut() {
   document.querySelector("#logout-btn").classList.remove("hidden");
 }
 
-// Funktionen der kaldes når log ud-knappen klikkes
+// ========== Log-out clicked ========== //
 function logOutClicked() {
   redirectToHomeAfterLogOut();
   removeLinksFromNavBarAfterLogOutClicked();
-  clearLoginStatus();
 }
 
-// Funktionen til at omdirigere til startsiden efter log ud
+// ========== Redirect to home ========== //
 function redirectToHomeAfterLogOut() {
   location.href = "#home";
   document.querySelector("#login-as-text").textContent = "";
@@ -122,22 +113,11 @@ function redirectToHomeAfterLogOut() {
   document.querySelector("#logout-btn").classList.add("hidden");
 }
 
-// Funktionen til at fjerne tilføjede links fra navigationslinjen efter log ud-klik
+// ========== Remove added links from nav bar after log out ========== //
 function removeLinksFromNavBarAfterLogOutClicked() {
   const addedLinks = document.querySelectorAll(".dropdown-content section");
   addedLinks.forEach((link) => link.remove());
 }
 
-// Indlæs login-status og opdater navigationslinjen baseret på det
-window.addEventListener("DOMContentLoaded", function () {
-  const loginStatus = loadLoginStatus();
-  if (loginStatus === "formand") {
-    addNewLinksToNavBarForChairman();
-  } else if (loginStatus === "kasserer") {
-    addNewLinkToNavBarForCashier();
-  } else if (loginStatus === "træner") {
-    addNewLinkToNavBarForCoach();
-  }
-});
 
 export { determineWhatIsShownInNavbar, logOutClicked };
