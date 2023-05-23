@@ -84,7 +84,7 @@ async function showCompetitiveMember(memberObject) {
     // setting textcontent value equal to clicked member
     document.querySelector(
       "#coach-dialog-name"
-    ).textContent = `Navn: ${memberObject.member.firstname} ${memberObject.lastname}`;
+    ).textContent = `Navn: ${memberObject.member.firstname} ${memberObject.member.lastname}`;
     document.querySelector("#coach-dialog-age").textContent = `Alder: ${memberObject.member.age}`;
     document.querySelector("#coach-dialog-phone").textContent = `Telefon: ${memberObject.member.phone}`;
     document.querySelector("#coach-dialog-mail").textContent = `E-mail: ${memberObject.member.email}`;

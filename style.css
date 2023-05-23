@@ -38,6 +38,7 @@ header {
 .navbar {
   background-color: cornflowerblue;
   overflow: hidden;
+  z-index: 99;
 }
 
 .navbar a {
@@ -48,17 +49,20 @@ header {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  z-index: 99;
 }
 
 .navbar a:hover {
   background-color: #ddd;
   color: black;
+  z-index: 99;
 }
 
 /* CSS code for dropdown menu */
 .dropdown {
   float: left;
   overflow: hidden;
+  z-index: 99;
 }
 
 .dropdown .dropbtn {
@@ -262,15 +266,27 @@ td {
 }
 
 #forCashier {
-  background-image: url(img/cashier.jpg);
-  background-size: 30%;
-  background-position: left;
+  position: relative; /* Add position relative to the container */
   width: 100%;
   height: cover;
   padding-left: 180px;
   padding-top: 50px;
   padding-bottom: 250px;
+  z-index: 2;
 }
+.background-image-cashier {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(img/cashier.jpg);
+  background-size: 30%;
+  background-position: left;
+  opacity: 0.5;
+  z-index: -1;
+}
+
 #for-coach-article {
   background-image: url(img/coach.jpg);
   background-size: 70%;
