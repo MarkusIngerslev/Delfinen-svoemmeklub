@@ -35,6 +35,10 @@ header {
   color: #333;
 }
 
+fieldset {
+  width: 70%;
+  margin-left: 200px;
+}
 .navbar {
   background-color: cornflowerblue;
   overflow: hidden;
@@ -289,8 +293,8 @@ td {
 
 #for-coach-article {
   background-image: url(img/coach.jpg);
-  background-size: 70%;
-  background-position: left;
+  background-size: 58%;
+  background-position: right;
   width: 100%;
   height: cover;
   padding-top: 50px;
