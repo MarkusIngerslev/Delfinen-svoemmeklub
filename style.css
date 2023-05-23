@@ -490,7 +490,7 @@ h3 {
 }
 
 
-#coach-members-tbody tr 
+.coach-members-tbody 
 /* #cashier-members tr, */
 /* #membersTable tr {  */
 {  background-color: #e1e0e2;
@@ -586,9 +586,21 @@ h3 {
   grid-column: 11;
 }
 
-/* Styling af top fem svømmere i hver disciplin */
-#coach-members-tbody tr:nth-child(-n+5),
-.topFiveHighlight{
+.topFiveHighlight tr:nth-child(-n+5) {
   background-color: yellow;
 }
+
+
+
+/* #coach-members-tbody tr:nth-child(-n+5), */
+/* .topFiveHighlight */
+/* #coach-members-tbody tr:nth-child(-n+5)  */
+/* {  background-color: yellow; */
+/* } */
+
+
+/* .topFiveHighlight, */
+/* #coach-members-tbody tr:nth-child(-n+5){ */
+  /* background-color: yellow; */
+/* } */
 

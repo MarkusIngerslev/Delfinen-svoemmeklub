@@ -18,6 +18,10 @@ async function showCompetitiveMembers(results, members) {
   // event listener til sort
   document.querySelector("#sortBy-for-coach").addEventListener("change", sortByForCoach);
 
+  // event listener til markering af top fem svømmere
+  document.querySelector("#coachFilterJunior").addEventListener("change", showTopFiveSwimmers);
+
+
   // event listener til filtre
   document.querySelector("#coachFilterTop5").addEventListener("change", filterforCoach);
   document.querySelector("#coachFilterJunior").addEventListener("change", filterforCoach);
@@ -37,6 +41,13 @@ async function showCompetitiveMembers(results, members) {
   // console.log(coachResults);
   showCompetitiveMemberLoop(coachResults);
 }
+
+
+ function showTopFiveSwimmers() {
+   document.querySelector("#coach-members-tbody").classList.add("topFiveHighlight");
+   console.log("Læses dette i consollen?");
+ }
+
 
 function showCompetitiveMemberLoop(results) {
   document.querySelector("#coach-members-tbody").innerHTML = "";
