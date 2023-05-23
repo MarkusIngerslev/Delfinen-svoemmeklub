@@ -58,7 +58,7 @@ function showMemberForCashier(memberObject) {
     document.querySelector(
       "#cashier-dialog-sub-end"
     ).textContent = `Medlemskab ophører: ${memberObject.subscriptionEnd}`;
-    document.querySelector("#cashier-dialog-restance").textContent = `Restance: ${memberObject.restance}`;
+    document.querySelector("#cashier-dialog-restance").textContent = `Restance: ${restance}`;
 
     // show modal/dialog
     document.querySelector("#cashier-dialog").showModal();
