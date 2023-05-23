@@ -95,7 +95,12 @@ async function showCompetitiveMember(memberObject) {
       "#coach-dialog-disciplines"
     ).textContent = `Disciplin(er): ${memberObject.member.disciplines}`;
     document.querySelector("#coach-dialog-coach").textContent = `Træner: ${memberObject.member.coach}`;
-    document.querySelector("#coach-dialog-active").textContent = `Aktiv: ${memberObject.member.active}`;
+    // document.querySelector("#coach-dialog-active").textContent = `Aktiv: ${memberObject.member.active}`;
+    if (memberObject.member.active === true) {
+      document.querySelector("#coach-dialog-active").textContent = `Aktiv: Ja, aktiv`;
+    } else if (memberObject.member.active === false) {
+      document.querySelector("#coach-dialog-active").textContent = `Aktiv: Nej, passiv`;
+    }
 
     // show modal/dialog
     document.querySelector("#coach-dialog").showModal();
