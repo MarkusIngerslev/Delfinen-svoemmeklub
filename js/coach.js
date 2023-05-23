@@ -64,9 +64,8 @@ async function showCompetitiveMember(memberObject) {
       </tr>
     `
   );
-
   document.querySelector("#coach-members-tbody tr:last-child").addEventListener("click", showAthlete);
-
+  // document.querySelector("#coach-members-tbody tr").classList.remove("topFiveHighlight");
   document
     .querySelector("#coach-members-tbody tr:last-child .coachTableUpdateBtn")
     .addEventListener("click", (event) => {
@@ -77,7 +76,6 @@ async function showCompetitiveMember(memberObject) {
   function showAthlete(event) {
     console.log("athlete clicked");
     event.preventDefault;
-
     // adding evenlistener for close btn in dialog view
     document.querySelector("#coach-dialog-btn-close").addEventListener("click", closeCoachDialog);
 

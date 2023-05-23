@@ -483,11 +483,19 @@ h3 {
   background-color: #bfbdc1;
 }
 
-#coach-members-tbody tr,
+/* #coach-members-tbody tr,  */
 #cashier-members tr,
 #membersTable tr {
   background-color: #e1e0e2;
 }
+
+
+#coach-members-tbody tr 
+/* #cashier-members tr, */
+/* #membersTable tr {  */
+{  background-color: #e1e0e2;
+}
+
 
 #coach-members,
 #cashier-members,
@@ -577,3 +585,10 @@ h3 {
 #login-as-text {
   grid-column: 11;
 }
+
+/* Styling af top fem svømmere i hver disciplin */
+#coach-members-tbody tr:nth-child(-n+5),
+.topFiveHighlight{
+  background-color: yellow;
+}
+
