@@ -449,6 +449,11 @@ h3 {
 
 /* ---------- styling for coach page ---------- */
 
+#coach-filter-sort-fieldset {
+  background-color: cornflowerblue;
+  margin: auto;
+}
+
 #for-coach-article {
   text-align: center;
 }
