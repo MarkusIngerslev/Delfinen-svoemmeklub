@@ -7,6 +7,31 @@ const coach = document.querySelector("#login-coach");
 const username = "1234";
 const password = "1234";
 
+//========== Funktionen til at gemme loginstatus i localStorage==========//
+function saveLoginStatus(role) {
+  localStorage.setItem("loginStatus", role);
+}
+
+// ==========Funktionen til at gendanne loginstatus fra localStorage==========//
+function restoreLoginStatus() {
+  const role = localStorage.getItem("loginStatus");
+  if (role) {
+    // Genopret loginstatus baseret på rolle
+    if (role === "chairman") {
+      addNewLinksToNavBarForChairman();
+      document.querySelector("#login-as-text").textContent = "Du er logget ind som formand";
+    } else if (role === "cashier") {
+      addNewLinkToNavBarForCashier();
+      document.querySelector("#login-as-text").textContent = "Du er logget ind som kasserer";
+    } else if (role === "coach") {
+      addNewLinkToNavBarForCoach();
+      document.querySelector("#login-as-text").textContent = "Du er logget ind som træner";
+    }
+    hideLogIn();
+    showLogOut();
+  }
+}
+
 // ========== Vælg, hvilken funktion, der kaldes efter login ========== //
 function determineWhatIsShownInNavbar() {
   if (
@@ -15,18 +40,21 @@ function determineWhatIsShownInNavbar() {
     username === document.querySelector("#username").value
   ) {
     addNewLinksToNavBarForChairman();
+    saveLoginStatus("chairman"); // Gem loginstatus som formand
   } else if (
     cashier.checked &&
     password === document.querySelector("#password").value &&
     username === document.querySelector("#username").value
   ) {
     addNewLinkToNavBarForCashier();
+    saveLoginStatus("cashier"); // Gem loginstatus som kasserer
   } else if (
     coach.checked &&
     password === document.querySelector("#password").value &&
     username === document.querySelector("#username").value
   ) {
     addNewLinkToNavBarForCoach();
+    saveLoginStatus("coach"); // Gem loginstatus som træner
   } else {
     console.log("Ingen login-navne fundet");
     document.querySelector("#error-message-log-in").showModal();
@@ -58,7 +86,6 @@ function addNewLinksToNavBarForChairman() {
 }
 // ========== Indsæt links i navbar for kasserer ========== //
 function addNewLinkToNavBarForCashier() {
-  //  if (passwordTreasurer && usernameTreasurer) {
   const linkForCashier =
     /*html*/
     `<section>
@@ -74,7 +101,6 @@ function addNewLinkToNavBarForCashier() {
 
 // ========== Indsæt links i navbar for træner ========== //
 function addNewLinkToNavBarForCoach() {
-  // if (passwordCoach && usernameCoach) {
   const linkForCoach =
     /*html*/
     `<section>
@@ -103,6 +129,7 @@ function showLogOut() {
 function logOutClicked() {
   redirectToHomeAfterLogOut();
   removeLinksFromNavBarAfterLogOutClicked();
+  localStorage.removeItem("loginStatus"); // Fjern loginstatus fra localStorage ved logud
 }
 
 // ========== Redirect to home ========== //
@@ -119,5 +146,7 @@ function removeLinksFromNavBarAfterLogOutClicked() {
   addedLinks.forEach((link) => link.remove());
 }
 
+// Event listener til at gendanne loginstatus ved sidenindlæsning
+window.addEventListener("load", restoreLoginStatus);
 
 export { determineWhatIsShownInNavbar, logOutClicked };
