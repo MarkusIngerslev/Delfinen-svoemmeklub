@@ -1,5 +1,7 @@
 import { updateSwimtimeResult } from "./rest-data.js";
-import { results, updateMembersTable } from "./script.js";
+import { results, updateMembersTable, members } from "./script.js";
+import { formatDate } from "./chairman.js";
+import { createNewTime } from "./helpers.js";
 
 // ----- global variable ----- //
 
@@ -9,6 +11,13 @@ let coachResults;
 
 // ========== show competitve members ========== //
 //import { members } from "./script.js";
+document.querySelector("form#form-create-new-time").addEventListener("submit", createNewTimeSubmitted);
+document.querySelector(".btn-create-coach").addEventListener("click", newTimeClicked);
+const closeButtonCreateMember = document.querySelector("#createTime-close-btn");
+closeButtonCreateMember.addEventListener("click", function () {
+  const dialog = document.querySelector("#newTimeDialog");
+  dialog.close();
+});
 
 async function showCompetitiveMembers(results, members) {
   // event listener til svømmetid update
@@ -306,5 +315,90 @@ function isButterfly(result) {
   //console.log(result)
   return result.disciplin === "butterfly";
 }
+
+function newTimeClicked() {
+  console.log("ny tid trykket");
+  document.querySelector("#newTimeDialog").showModal();
+  document.querySelector("#newTimeDialog").scrollTop = 0;
+}
+
+async function createNewTimeSubmitted(event) {
+  event.preventDefault();
+  const form = document.querySelector("form#form-create-new-time");
+  const result = {
+    memberId: form.querySelector("#search-for-member").value,
+    timeMiliSeconds: form.querySelector("#new-time").value,
+    date: formatDate(form.querySelector("#date-of-new-time").value),
+    tournamentName: form.querySelector("#tournamentname").value,
+  };
+
+  // Set disciplime based on the selected radio button
+  const disciplineOption1 = form.querySelector("#new-time-discipline-opt1");
+  const disciplineOption2 = form.querySelector("#new-time-discipline-opt2");
+  const disciplineOption3 = form.querySelector("#new-time-discipline-opt3");
+  const disciplineOption4 = form.querySelector("#new-time-discipline-opt4");
+
+  if (disciplineOption1.checked) {
+    result.disciplin = "Crawl";
+  } else if (disciplineOption2.checked) {
+    result.disciplin = "Ryg-Crawl";
+  } else if (disciplineOption3.checked) {
+    result.disciplin = "Brystsvømning";
+  } else if (disciplineOption4.checked) {
+    result.disciplin = "Butterfly";
+  }
+
+  const tournamentOption1 = form.querySelector("#new-time-tournament-opt1");
+  const tournamentOption2 = form.querySelector("#new-time-tournament-opt2");
+
+  if (tournamentOption1.checked) {
+    result.tournament = true;
+  } else if (tournamentOption2.checked) {
+    result.tournament = false;
+
+    const response = await createNewTime(
+      result.date,
+      result.disciplin,
+      result.memberId,
+      result.timeMiliSeconds,
+      result.tournament,
+      result.tournamentName
+    );
+
+    if (response.ok) {
+      console.log("New time added");
+      updateMembersTable();
+      console.log(results);
+    }
+
+    document.querySelector("#newTimeDialog").close();
+  }
+}
+
+function handleMemberSearchInput() {
+  const searchInput = document.querySelector("#search-for-member");
+  const memberOptions = document.querySelector("#member-options");
+
+  // Clear existing options
+  memberOptions.innerHTML = "";
+
+  // Filter members based on search input
+  const filteredMembers = members.filter(
+    (member) =>
+      member.firstname.toLowerCase().includes(searchInput.value.toLowerCase()) ||
+      member.lastname.toLowerCase().includes(searchInput.value.toLowerCase())
+  );
+
+  // Add options to the dropdown
+  filteredMembers.forEach((member) => {
+    const option = document.createElement("option");
+    option.value = member.id;
+    memberOptions.appendChild(option);
+  });
+}
+
+// Add event listener to the search input
+const searchInput = document.querySelector("#search-for-member");
+searchInput.addEventListener("input", handleMemberSearchInput);
 
 export { showCompetitiveMembers };

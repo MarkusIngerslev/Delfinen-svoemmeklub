@@ -1,4 +1,4 @@
-const endpoint = "https://crud-1st-semester-projekt-default-rtdb.firebaseio.com/";
+const endpoint = "https://database-members-default-rtdb.firebaseio.com/";
 
 // ========== Laver objekt til array ========== //
 function prepareMembersData(data) {
@@ -58,4 +58,21 @@ async function createMember(
   return response;
 }
 
-export { prepareMembersData, prepareResultsData, createMember };
+async function createNewTime(date, disciplin, memberId, timeMiliSeconds, tournament, tournamentName) {
+  const newTime = {
+    date,
+    disciplin,
+    memberId,
+    timeMiliSeconds,
+    tournament,
+    tournamentName,
+  };
+  const newTimeJson = JSON.stringify(newTime);
+  const response = await fetch(`${endpoint}/results.json`, {
+    method: "POST",
+    body: newTimeJson,
+  });
+  return response;
+}
+
+export { prepareMembersData, prepareResultsData, createMember, createNewTime };

@@ -326,7 +326,9 @@ p {
   align-content: left;
   width: 100%;
 }
-.btn-create {
+
+.btn-create,
+.btn-create-coach {
   background-color: aquamarine;
   padding: 0.5em 1em;
   border-color: black;
@@ -336,6 +338,11 @@ p {
   cursor: pointer;
   align-content: left;
   width: 20%;
+  text-align: left;
+}
+
+.btn.alignment {
+  text-align: left;
 }
 
 .btn-close-coach,
@@ -386,7 +393,9 @@ h3 {
 #reset-btn-create,
 #submit-btn-update,
 #reset-btn-update,
-#cashier-dialog-btn-close {
+#cashier-dialog-btn-close,
+#submit-btn-create-time,
+#reset-btn-create-time {
   background-color: aquamarine;
   padding: 0.5em 1em;
   border-color: black;
@@ -411,6 +420,24 @@ h3 {
   color: #070707;
   background-color: cornflowerblue;
 }
+
+#text-ny-tid {
+  font-size: 10px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+#form-create-new-time {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(7, 1fr);
+  text-shadow: 4px 4px 4px rgba(76, 57, 241, 0.1);
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  color: #070707;
+  background-color: cornflowerblue;
+}
 #update-member,
 #dialog-delete-member {
   margin-top: 6px;
@@ -423,6 +450,15 @@ h3 {
 
 #create-member {
   margin-top: 6px;
+  background-color: cornflowerblue;
+  top: 15%;
+  border: 2px solid aquamarine;
+  width: 730px;
+  align-items: center;
+}
+
+#newTimeDialog {
+  margin-top: 60px;
   background-color: cornflowerblue;
   top: 15%;
   border: 2px solid aquamarine;
