@@ -20,7 +20,11 @@ async function showCompetitiveMembers(results, members) {
 
   // event listener til markering af top fem svømmere
   document.querySelector("#coachFilterJunior").addEventListener("change", showTopFiveSwimmers);
-
+  document.querySelector("#coachFilterSenior").addEventListener("change", showTopFiveSwimmers);
+  document.querySelector("#coachFilterCrawl").addEventListener("change", showTopFiveSwimmers);
+  document.querySelector("#coachFilterButterfly").addEventListener("change", showTopFiveSwimmers);
+  document.querySelector("#coachFilterBrystsvoemning").addEventListener("change", showTopFiveSwimmers);
+  document.querySelector("#coachFilterRygCrawl").addEventListener("change", showTopFiveSwimmers);
 
   // event listener til filtre
   document.querySelector("#coachFilterTop5").addEventListener("change", filterforCoach);
@@ -42,12 +46,40 @@ async function showCompetitiveMembers(results, members) {
   showCompetitiveMemberLoop(coachResults);
 }
 
+function showTopFiveSwimmers() {
+  document.querySelector("#coach-members-tbody").classList.remove("topFiveHighlight");
+  const filterJunior = document.querySelector("#coachFilterJunior").checked;
+  const filterSenior = document.querySelector("#coachFilterSenior").checked;
+  const filterCrawl = document.querySelector("#coachFilterCrawl").checked;
+  const filterButterfly = document.querySelector("#coachFilterButterfly").checked;
+  const filterBreaststroke = document.querySelector("#coachFilterBrystsvoemning").checked;
+  const filterBackstroke = document.querySelector("#coachFilterRygCrawl").checked;
+  const sortByForCoachValue = document.querySelector("#sortBy-for-coach").value;
 
- function showTopFiveSwimmers() {
-   document.querySelector("#coach-members-tbody").classList.add("topFiveHighlight");
-   console.log("Læses dette i consollen?");
- }
-
+  if (
+    sortByForCoachValue === "none" &&
+    (filterJunior || filterSenior || filterCrawl || filterButterfly || filterBackstroke || filterBreaststroke)
+  ) {
+    document.querySelector("#coach-members-tbody").classList.remove("topFiveHighlight");
+  } else if (
+    sortByForCoachValue === "age" &&
+    (filterJunior || filterSenior || filterCrawl || filterButterfly || filterBackstroke || filterBreaststroke)
+  ) {
+    document.querySelector("#coach-members-tbody").classList.remove("topFiveHighlight");
+  } else if (sortByForCoachValue === "time" && filterJunior) {
+    document.querySelector("#coach-members-tbody").classList.add("topFiveHighlight");
+  } else if (sortByForCoachValue === "time" && filterSenior)
+    document.querySelector("#coach-members-tbody").classList.add("topFiveHighlight");
+  else if (sortByForCoachValue === "time" && filterCrawl)
+    document.querySelector("#coach-members-tbody").classList.add("topFiveHighlight");
+  else if (sortByForCoachValue === "time" && filterButterfly)
+    document.querySelector("#coach-members-tbody").classList.add("topFiveHighlight");
+  else if (sortByForCoachValue === "time" && filterBackstroke)
+    document.querySelector("#coach-members-tbody").classList.add("topFiveHighlight");
+  else if (sortByForCoachValue === "time" && filterBreaststroke)
+    document.querySelector("#coach-members-tbody").classList.add("topFiveHighlight");
+  console.log("Læses dette i consollen?");
+}
 
 function showCompetitiveMemberLoop(results) {
   document.querySelector("#coach-members-tbody").innerHTML = "";
