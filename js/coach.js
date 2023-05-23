@@ -26,6 +26,7 @@ async function showCompetitiveMembers(results, members) {
   document.querySelector("#brystsvoemning-radio").addEventListener("change", filterAgeGroup);
   document.querySelector("#butterfly-radio").addEventListener("change", filterAgeGroup);
 
+  // ---------- GAMMEL FILTER KODE START eventlistenere ---------- \\
   // event listener til filtre
   // document.querySelector("#coachFilterTop5").addEventListener("change", filterforCoach);
   // document.querySelector("#coachFilterJunior").addEventListener("change", filterforCoach);
@@ -34,6 +35,7 @@ async function showCompetitiveMembers(results, members) {
   // document.querySelector("#coachFilterRygCrawl").addEventListener("change", filterforCoach);
   // document.querySelector("#coachFilterBrystsvoemning").addEventListener("change", filterforCoach);
   // document.querySelector("#coachFilterButterfly").addEventListener("change", filterforCoach);
+  // ---------- GAMMEL FILTER KODE START eventlistenere---------- \\
 
   for (const result of results) {
     const member = members.find((member) => member.id === result.memberId);
@@ -274,15 +276,16 @@ async function filterAgeGroup() {
   }
 }
 
+// ---------- GAMMEL FILTER KODE START funktioner---------- \\
 // ========== filter ========== //
-async function filterforCoach() {
-  const top5 = document.querySelector("#coachFilterTop5");
-  const junior = document.querySelector("#coachFilterJunior");
-  const senior = document.querySelector("#coachFilterSenior");
-  const crawl = document.querySelector("#coachFilterCrawl");
-  const rygCrawl = document.querySelector("#coachFilterRygCrawl");
-  const brystSvoemning = document.querySelector("#coachFilterBrystsvoemning");
-  const butterfly = document.querySelector("#coachFilterButterfly");
+// async function filterforCoach() {
+//   const top5 = document.querySelector("#coachFilterTop5");
+//   const junior = document.querySelector("#coachFilterJunior");
+//   const senior = document.querySelector("#coachFilterSenior");
+//   const crawl = document.querySelector("#coachFilterCrawl");
+//   const rygCrawl = document.querySelector("#coachFilterRygCrawl");
+//   const brystSvoemning = document.querySelector("#coachFilterBrystsvoemning");
+//   const butterfly = document.querySelector("#coachFilterButterfly");
 
   // if (junior.checked) {
   //   filterList = coachResults.filter(isJunior);
@@ -328,7 +331,7 @@ async function filterforCoach() {
   //   isFilterOn = false;
   //   showCompetitiveMemberLoop(coachResults);
   // }
-}
+//}
 
 // function top5Results(result1, result2) {
 //   return result1.timeMiliSeconds - result2.timeMiliSeconds;
@@ -358,5 +361,7 @@ async function filterforCoach() {
 //   //console.log(result)
 //   return result.disciplin === "butterfly";
 // }
+// ---------- GAMMEL FILTER KODE SLUT funktioner---------- \\
+
 
 export { showCompetitiveMembers };
