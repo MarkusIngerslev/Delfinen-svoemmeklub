@@ -228,47 +228,72 @@
       <!-- DOM-manipulation for coach-->
       <section id="for-coach-section" class="view-content">
         <article id="for-coach-article">
-          <div id="forCoachSort-container">
-            <label for="for-coach-sort-by">Sortering: </label>
-            <select name="for-coach-sort-by" id="sortBy-for-coach">
-              <option value="none">Intet</option>
-              <option value="age">Alder</option>
-              <option value="time">Tid</option>
-            </select>
-          </div>
           <div id="forCoachFilter">
-            <fieldset>
+            <fieldset id="coach-filter-sort-fieldset">
+              <!-- Sortering -->
+              <div id="forCoachSort-container">
+                <label for="for-coach-sort-by">Sortering: </label>
+                <select name="for-coach-sort-by" id="sortBy-for-coach">
+                  <option value="none">Intet</option>
+                  <option value="age">Alder</option>
+                  <option value="time">Tid</option>
+                </select>
+              </div>
+              <!-- aldersgruppe -->
+              <p>Vælg aldersgruppe:</p>
+
+              <label for="senior-radio">Senior</label>
+              <input type="radio" name="aldersgruppe" id="senior-radio" value="senior" />
+
+              <label for="junior-radio">Junior</label>
+              <input type="radio" name="aldersgruppe" id="junior-radio" value="junior" />
+
+              <!-- disciplin -->
+              <p>Vælg disciplin:</p>
+
+              <label for="">Crawl</label>
+              <input type="radio" name="disciplin" id="crawl-radio" value="crawl" />
+
+              <label for="">Ryg-crawl</label>
+              <input type="radio" name="disciplin" id="ryg-crawl-radio" value="ryg-crawl" />
+
+              <label for="">Bryst-svømning</label>
+              <input type="radio" name="disciplin" id="brystsvoemning-radio" value="brystsvoemning" />
+
+              <label for="">Butterfly</label>
+              <input type="radio" name="disciplin" id="butterfly-radio" value="butterfly" />
+
+              <!-- // ---------- GAMMEL FILTER KODE START html---------- \\ -->
               <!-- Top 5 filter -->
-              <label for="coachFilterTop5"
+              <!-- <label for="coachFilterTop5"
                 >Top 5: <input type="checkbox" name="coachFilterTop5" id="coachFilterTop5"
-              /></label>
+              /></label> -->
               <!-- Junior filter -->
-              <label for="coachFilterJunior"
+              <!-- <label for="coachFilterJunior"
                 >Junior: <input type="checkbox" name="coachFilterJunior" id="coachFilterJunior"
-              /></label>
+              /></label> -->
 
               <!-- Senior filter -->
-              <label for="coachFilterSenior"
+              <!-- <label for="coachFilterSenior"
                 >Senior: <input type="checkbox" name="coachFilterSenior" id="coachFilterSenior"
-              /></label>
+              /></label> -->
               <!-- Crawl filter -->
-              <label for="coachFilterCrawl"
+              <!-- <label for="coachFilterCrawl"
                 >Crawl: <input type="checkbox" name="coachFilterCrawl" id="coachFilterCrawl"
-              /></label>
+              /></label> -->
               <!-- Ryg-crawl filter -->
-              <label for="coachFilterRygCrawl"
+              <!-- <label for="coachFilterRygCrawl"
                 >Ryg-Crawl: <input type="checkbox" name="coachFilterRygCrawl" id="coachFilterRygCrawl"
-              /></label>
+              /></label> -->
               <!-- Brystsvoemning filter -->
-              <label for="coachFilterBrystsvoemning"
+              <!-- <label for="coachFilterBrystsvoemning"
                 >Bryst svømning: <input type="checkbox" name="coachFilterBrystsvoemning" id="coachFilterBrystsvoemning"
-              /></label>
+              /></label> -->
               <!-- Butterfly filter -->
-              <label for="coachFilterButterfly"
+              <!-- <label for="coachFilterButterfly"
                 >Butterfly: <input type="checkbox" name="coachFilterButterfly" id="coachFilterButterfly"
-              /></label>
-
-              <!-- Ekstra filtre -->
+              /></label> -->
+              <!-- // ---------- GAMMEL FILTER KODE SLUT html---------- \\ -->
             </fieldset>
           </div>
           <h2>Atleter</h2>
