@@ -26,6 +26,14 @@ async function showCompetitiveMembers(results, members) {
   document.querySelector("#brystsvoemning-radio").addEventListener("change", filterAgeGroup);
   document.querySelector("#butterfly-radio").addEventListener("change", filterAgeGroup);
 
+  // // event listener til filtre
+  document.querySelector("#senior-radio").addEventListener("change", showTopFiveSwimmers);
+  document.querySelector("#junior-radio").addEventListener("change", showTopFiveSwimmers);
+  document.querySelector("#crawl-radio").addEventListener("change", showTopFiveSwimmers);
+  document.querySelector("#ryg-crawl-radio").addEventListener("change", showTopFiveSwimmers);
+  document.querySelector("#brystsvoemning-radio").addEventListener("change", showTopFiveSwimmers);
+  document.querySelector("#butterfly-radio").addEventListener("change", showTopFiveSwimmers);
+
   // ---------- GAMMEL FILTER KODE START eventlistenere ---------- \\
   // event listener til filtre
   // document.querySelector("#coachFilterTop5").addEventListener("change", filterforCoach);
@@ -49,23 +57,27 @@ async function showCompetitiveMembers(results, members) {
 }
 
 function showTopFiveSwimmers() {
-  document.querySelector("#coach-members-tbody").classList.remove("topFiveHighlight");
-  const filterJunior = document.querySelector("#coachFilterJunior").checked;
-  const filterSenior = document.querySelector("#coachFilterSenior").checked;
-  const filterCrawl = document.querySelector("#coachFilterCrawl").checked;
-  const filterButterfly = document.querySelector("#coachFilterButterfly").checked;
-  const filterBreaststroke = document.querySelector("#coachFilterBrystsvoemning").checked;
-  const filterBackstroke = document.querySelector("#coachFilterRygCrawl").checked;
+  // document.querySelector("#coach-members-tbody").classList.remove("topFiveHighlight");
+  const filterJunior = document.querySelector("#junior-radio").checked;
+  const filterSenior = document.querySelector("#senior-radio").checked;
+  const filterCrawl = document.querySelector("#crawl-radio").checked;
+  const filterButterfly = document.querySelector("#butterfly-radio").checked;
+  const filterBreaststroke = document.querySelector("#brystsvoemning-radio").checked;
+  const filterBackstroke = document.querySelector("#ryg-crawl-radio").checked;
   const sortByForCoachValue = document.querySelector("#sortBy-for-coach").value;
 
   if (
-    sortByForCoachValue === "none" &&
-    (filterJunior || filterSenior || filterCrawl || filterButterfly || filterBackstroke || filterBreaststroke)
+    sortByForCoachValue === "none"
+    // &&
+    // (filterJunior || filterSenior) &&
+    // (filterCrawl || filterButterfly || filterBackstroke || filterBreaststroke)
   ) {
     document.querySelector("#coach-members-tbody").classList.remove("topFiveHighlight");
   } else if (
-    sortByForCoachValue === "age" &&
-    (filterJunior || filterSenior || filterCrawl || filterButterfly || filterBackstroke || filterBreaststroke)
+    sortByForCoachValue === "age"
+    // &&
+    // (filterJunior || filterSenior) &&
+    // (filterCrawl || filterButterfly || filterBackstroke || filterBreaststroke)
   ) {
     document.querySelector("#coach-members-tbody").classList.remove("topFiveHighlight");
   } else if (sortByForCoachValue === "time" && filterJunior) {
@@ -111,10 +123,12 @@ async function showCompetitiveMember(memberObject) {
   );
   document.querySelector("#coach-members-tbody tr:last-child").addEventListener("click", showAthlete);
 
-  document.querySelector("#coach-members-tbody tr:last-child .coachTableUpdateBtn").addEventListener("click", (event) => {
-    event.stopPropagation();
-    coachTableUpdate();
-  });
+  document
+    .querySelector("#coach-members-tbody tr:last-child .coachTableUpdateBtn")
+    .addEventListener("click", (event) => {
+      event.stopPropagation();
+      coachTableUpdate();
+    });
 
   function showAthlete(event) {
     console.log("athlete clicked");
@@ -123,12 +137,18 @@ async function showCompetitiveMember(memberObject) {
     document.querySelector("#coach-dialog-btn-close").addEventListener("click", closeCoachDialog);
 
     // setting textcontent value equal to clicked member
-    document.querySelector("#coach-dialog-name").textContent = `Navn: ${memberObject.member.firstname} ${memberObject.member.lastname}`;
+    document.querySelector(
+      "#coach-dialog-name"
+    ).textContent = `Navn: ${memberObject.member.firstname} ${memberObject.member.lastname}`;
     document.querySelector("#coach-dialog-age").textContent = `Alder: ${memberObject.member.age}`;
     document.querySelector("#coach-dialog-phone").textContent = `Telefon: ${memberObject.member.phone}`;
     document.querySelector("#coach-dialog-mail").textContent = `E-mail: ${memberObject.member.email}`;
-    document.querySelector("#coach-dialog-activity-form").textContent = `Aktivitets-form: ${memberObject.member.activityForm}`;
-    document.querySelector("#coach-dialog-disciplines").textContent = `Disciplin(er): ${memberObject.member.disciplines}`;
+    document.querySelector(
+      "#coach-dialog-activity-form"
+    ).textContent = `Aktivitets-form: ${memberObject.member.activityForm}`;
+    document.querySelector(
+      "#coach-dialog-disciplines"
+    ).textContent = `Disciplin(er): ${memberObject.member.disciplines}`;
     document.querySelector("#coach-dialog-coach").textContent = `Træner: ${memberObject.member.coach}`;
     // document.querySelector("#coach-dialog-active").textContent = `Aktiv: ${memberObject.member.active}`;
     if (memberObject.member.active === true) {
@@ -145,9 +165,13 @@ async function showCompetitiveMember(memberObject) {
   function coachTableUpdate() {
     const updateForm = document.querySelector("#update-swimtime-coach-form");
     // sætter personen navn i form
-    document.querySelector("#update-swimtime-coach-person").textContent = `Svømme tid for: ${memberObject.member.firstname} ${memberObject.member.lastname}`;
+    document.querySelector(
+      "#update-swimtime-coach-person"
+    ).textContent = `Svømme tid for: ${memberObject.member.firstname} ${memberObject.member.lastname}`;
     // sætter p til at vise den nuværende/gamle bedste tid
-    document.querySelector("#update-swimtime-coach-oldtime").textContent = `Den nuværende tid er: ${memberObject.timeMiliSeconds}ms`;
+    document.querySelector(
+      "#update-swimtime-coach-oldtime"
+    ).textContent = `Den nuværende tid er: ${memberObject.timeMiliSeconds}ms`;
     // sætter den nuværende/gamle bedste tid ind i input
     updateForm.coachUpdatetime.value = memberObject.timeMiliSeconds;
     updateForm.setAttribute("data-id", memberObject.id);
@@ -261,7 +285,14 @@ async function filterAgeGroup() {
   const brystSvoemning = document.querySelector("#brystsvoemning-radio");
   const butterfly = document.querySelector("#butterfly-radio");
 
-  if (senior.checked || junior.checked || crawl.checked || rygCrawl.checked || brystSvoemning.checked || butterfly.checked) {
+  if (
+    senior.checked ||
+    junior.checked ||
+    crawl.checked ||
+    rygCrawl.checked ||
+    brystSvoemning.checked ||
+    butterfly.checked
+  ) {
     filterList = coachResults.filter(checkFilters);
     isFilterOn = true;
     showCompetitiveMemberLoop(filterList);
@@ -272,9 +303,23 @@ async function filterAgeGroup() {
 
   function checkFilters(result) {
     // hvis kun aldersgrænse er valgt
-    if (senior.checked && result.member.age >= 18 && !crawl.checked && !rygCrawl.checked && !brystSvoemning.checked && !butterfly.checked) {
+    if (
+      senior.checked &&
+      result.member.age >= 18 &&
+      !crawl.checked &&
+      !rygCrawl.checked &&
+      !brystSvoemning.checked &&
+      !butterfly.checked
+    ) {
       return result;
-    } else if (junior.checked && result.member.age < 18 && !crawl.checked && !rygCrawl.checked && !brystSvoemning.checked && !butterfly.checked) {
+    } else if (
+      junior.checked &&
+      result.member.age < 18 &&
+      !crawl.checked &&
+      !rygCrawl.checked &&
+      !brystSvoemning.checked &&
+      !butterfly.checked
+    ) {
       console.log(result);
       return result;
     }
@@ -293,7 +338,12 @@ async function filterAgeGroup() {
       return result;
     } else if (senior.checked && result.member.age >= 18 && rygCrawl.checked && result.disciplin === "ryg-crawl") {
       return result;
-    } else if (senior.checked && result.member.age >= 18 && brystSvoemning.checked && result.disciplin === "bryst-svømning") {
+    } else if (
+      senior.checked &&
+      result.member.age >= 18 &&
+      brystSvoemning.checked &&
+      result.disciplin === "bryst-svømning"
+    ) {
       return result;
     } else if (senior.checked && result.member.age >= 18 && butterfly.checked && result.disciplin === "butterfly") {
       return result;
@@ -301,7 +351,12 @@ async function filterAgeGroup() {
       return result;
     } else if (junior.checked && result.member.age < 18 && rygCrawl.checked && result.disciplin === "ryg-crawl") {
       return result;
-    } else if (junior.checked && result.member.age < 18 && brystSvoemning.checked && result.disciplin === "bryst-svømning") {
+    } else if (
+      junior.checked &&
+      result.member.age < 18 &&
+      brystSvoemning.checked &&
+      result.disciplin === "bryst-svømning"
+    ) {
       return result;
     } else if (junior.checked && result.member.age < 18 && butterfly.checked && result.disciplin === "butterfly") {
       return result;
@@ -320,50 +375,50 @@ async function filterAgeGroup() {
 //   const brystSvoemning = document.querySelector("#coachFilterBrystsvoemning");
 //   const butterfly = document.querySelector("#coachFilterButterfly");
 
-  // if (junior.checked) {
-  //   filterList = coachResults.filter(isJunior);
-  //   isFilterOn = true;
-  //   console.log("--filter for junior checked--");
-  //   console.log(filterList);
-  //   showCompetitiveMemberLoop(filterList);
-  // } else if (senior.checked) {
-  //   filterList = coachResults.filter(isSenior);
-  //   isFilterOn = true;
-  //   console.log("--filter for senior checked--");
-  //   console.log(filterList);
-  //   showCompetitiveMemberLoop(filterList);
-  // } else if (top5.checked) {
-  //   filterList = coachResults.sort(top5Results).slice(); // .slice bliver brugt til at lave en copy results, som splice går ind og ændre.
-  //   isFilterOn = true;
-  //   filterList.splice(5);
-  //   console.log("--filter for top5--");
-  //   console.log(filterList);
-  //   showCompetitiveMemberLoop(filterList);
-  // } else if (crawl.checked) {
-  //   filterList = coachResults.filter(isCrawl);
-  //   isFilterOn = true;
-  //   console.log(filterList);
-  //   showCompetitiveMemberLoop(filterList);
-  // } else if (rygCrawl.checked) {
-  //   filterList = coachResults.filter(isRygCrawl);
-  //   isFilterOn = true;
-  //   console.log(filterList);
-  //   showCompetitiveMemberLoop(filterList);
-  // } else if (brystSvoemning.checked) {
-  //   filterList = coachResults.filter(isBrystSvoemning);
-  //   isFilterOn = true;
-  //   console.log(filterList);
-  //   showCompetitiveMemberLoop(filterList);
-  // } else if (butterfly.checked) {
-  //   filterList = coachResults.filter(isButterfly);
-  //   isFilterOn = true;
-  //   console.log(filterList);
-  //   showCompetitiveMemberLoop(filterList);
-  // } else {
-  //   filterList = coachResults;
-  //   isFilterOn = false;
-  //   showCompetitiveMemberLoop(coachResults);
-  // }
+// if (junior.checked) {
+//   filterList = coachResults.filter(isJunior);
+//   isFilterOn = true;
+//   console.log("--filter for junior checked--");
+//   console.log(filterList);
+//   showCompetitiveMemberLoop(filterList);
+// } else if (senior.checked) {
+//   filterList = coachResults.filter(isSenior);
+//   isFilterOn = true;
+//   console.log("--filter for senior checked--");
+//   console.log(filterList);
+//   showCompetitiveMemberLoop(filterList);
+// } else if (top5.checked) {
+//   filterList = coachResults.sort(top5Results).slice(); // .slice bliver brugt til at lave en copy results, som splice går ind og ændre.
+//   isFilterOn = true;
+//   filterList.splice(5);
+//   console.log("--filter for top5--");
+//   console.log(filterList);
+//   showCompetitiveMemberLoop(filterList);
+// } else if (crawl.checked) {
+//   filterList = coachResults.filter(isCrawl);
+//   isFilterOn = true;
+//   console.log(filterList);
+//   showCompetitiveMemberLoop(filterList);
+// } else if (rygCrawl.checked) {
+//   filterList = coachResults.filter(isRygCrawl);
+//   isFilterOn = true;
+//   console.log(filterList);
+//   showCompetitiveMemberLoop(filterList);
+// } else if (brystSvoemning.checked) {
+//   filterList = coachResults.filter(isBrystSvoemning);
+//   isFilterOn = true;
+//   console.log(filterList);
+//   showCompetitiveMemberLoop(filterList);
+// } else if (butterfly.checked) {
+//   filterList = coachResults.filter(isButterfly);
+//   isFilterOn = true;
+//   console.log(filterList);
+//   showCompetitiveMemberLoop(filterList);
+// } else {
+//   filterList = coachResults;
+//   isFilterOn = false;
+//   showCompetitiveMemberLoop(coachResults);
+// }
 //}
 
 // function top5Results(result1, result2) {
@@ -395,6 +450,5 @@ async function filterAgeGroup() {
 //   return result.disciplin === "butterfly";
 // }
 // ---------- GAMMEL FILTER KODE SLUT funktioner---------- \\
-
 
 export { showCompetitiveMembers };
