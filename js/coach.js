@@ -278,11 +278,11 @@ function top5Results(result1, result2) {
 }
 
 function isJunior(result) {
-  console.log(result);
+  // console.log(result);
   return result.member.age < 18 && result.member.activityForm === "konkurrence-svømmer";
 }
 function isSenior(result) {
-  console.log(result);
+  // console.log(result);
   return result.member.age >= 18 && result.member.activityForm === "konkurrence-svømmer";
 }
 function isCrawl(result) {
