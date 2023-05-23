@@ -97,9 +97,9 @@ function insertAccountingResults() {
   let restance = calculateRestance(members);
   let samlet = kontingenter - restance;
 
-  document.querySelector("#kontingenter").textContent = kontingenter;
-  document.querySelector("#restance").textContent = restance;
-  document.querySelector("#samlet").textContent = samlet;
+  document.querySelector("#kontingenter").textContent = kontingenter + " DKK";
+  document.querySelector("#restance").textContent = restance + " DKK";
+  document.querySelector("#samlet").textContent = samlet + " DKK";
 }
 
 //calculating sum of all subscriptions
