@@ -26,13 +26,15 @@ async function showCompetitiveMembers(results, members) {
   document.querySelector("#brystsvoemning-radio").addEventListener("change", filterAgeGroup);
   document.querySelector("#butterfly-radio").addEventListener("change", filterAgeGroup);
 
-  // // event listener til filtre
+  // // event listener til visning af top fem
   document.querySelector("#senior-radio").addEventListener("change", showTopFiveSwimmers);
   document.querySelector("#junior-radio").addEventListener("change", showTopFiveSwimmers);
   document.querySelector("#crawl-radio").addEventListener("change", showTopFiveSwimmers);
   document.querySelector("#ryg-crawl-radio").addEventListener("change", showTopFiveSwimmers);
   document.querySelector("#brystsvoemning-radio").addEventListener("change", showTopFiveSwimmers);
   document.querySelector("#butterfly-radio").addEventListener("change", showTopFiveSwimmers);
+  document.querySelector("#sortBy-for-coach").addEventListener("change", showTopFiveSwimmers);
+  
 
   // ---------- GAMMEL FILTER KODE START eventlistenere ---------- \\
   // event listener til filtre
@@ -57,6 +59,7 @@ async function showCompetitiveMembers(results, members) {
 }
 
 function showTopFiveSwimmers() {
+  console.log("Ændring?");
   // document.querySelector("#coach-members-tbody").classList.remove("topFiveHighlight");
   const filterJunior = document.querySelector("#junior-radio").checked;
   const filterSenior = document.querySelector("#senior-radio").checked;
