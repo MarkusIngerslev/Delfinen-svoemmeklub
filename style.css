@@ -287,7 +287,7 @@ td {
   background-image: url(img/cashier.jpg);
   background-size: 30%;
   background-position: left;
-  opacity: 0.5;
+  opacity: 0.19;
   z-index: -1;
 }
 
@@ -497,10 +497,9 @@ h3 {
 /* coach-members-tbody styles på baggrund af klasse frem for id */
 .coach-members-tbody 
 /* #cashier-members tr, */
-/* #membersTable tr {  */
-{  background-color: #e1e0e2;
+/* #membersTable tr {  */ {
+  background-color: #e1e0e2;
 }
-
 
 #coach-members,
 #cashier-members,
@@ -592,10 +591,6 @@ h3 {
 }
 
 /* Klasse der tilføjer baggrundsfarve til fem svømmere med bedste tider*/
-.topFiveHighlight tr:nth-child(-n+5) {
+.topFiveHighlight tr:nth-child(-n + 5) {
   background-color: yellow;
 }
-
-
-
-
