@@ -280,9 +280,7 @@ function sortByForCoach(event) {
     showCompetitiveMemberLoop(filterList);
   }
   function compareAge(result1, result2) {
-    const age1 = result1.member?.age || 0; // Use optional chaining (?.) and provide a fallback value
-    const age2 = result2.member?.age || 0;
-    return age1 - age2;
+    return result1.member.age - result2.member.age;
   }
 
   function compareTime(result1, result2) {
@@ -315,63 +313,65 @@ async function filterAgeGroup() {
   }
 
   function checkFilters(result) {
-    if (result && result.member && result.member.age !== undefined) {
-      // hvis kun aldersgrænse er valgt
-      if ((senior.checked && result.member.age >= 18) || (junior.checked && result.member.age < 18)) {
-        return result;
-      }
+    // hvis kun aldersgrænse er valgt
+    if (
+      senior.checked &&
+      result.member.age >= 18 &&
+      !crawl.checked &&
+      !rygCrawl.checked &&
+      !brystSvoemning.checked &&
+      !butterfly.checked
+    ) {
+      return result;
+    } else if (
+      junior.checked &&
+      result.member.age < 18 &&
+      !crawl.checked &&
+      !rygCrawl.checked &&
+      !brystSvoemning.checked &&
+      !butterfly.checked
+    ) {
+      console.log(result);
+      return result;
     }
-
     // hvis kun disciplin er valgt
-    if (
-      (crawl.checked && result.disciplin === "crawl") ||
-      (rygCrawl.checked && result.disciplin === "ryg-crawl") ||
-      (brystSvoemning.checked && result.disciplin === "bryst-svømning") ||
-      (butterfly.checked && result.disciplin === "butterfly")
-    ) {
+    else if (crawl.checked && result.disciplin === "crawl" && !senior.checked && !junior.checked) {
+      return result;
+    } else if (rygCrawl.checked && result.disciplin === "ryg-crawl" && !senior.checked && !junior.checked) {
+      return result;
+    } else if (brystSvoemning.checked && result.disciplin === "bryst-svømning" && !senior.checked && !junior.checked) {
+      return result;
+    } else if (butterfly.checked && result.disciplin === "butterfly" && !senior.checked && !junior.checked) {
       return result;
     }
-
     // hvis en kombination af aldersgrænse og disciplin er valgt
-    if (
-      (senior.checked && result.member && result.member.age >= 18 && crawl.checked && result.disciplin === "crawl") ||
-      (senior.checked &&
-        result.member &&
-        result.member.age >= 18 &&
-        rygCrawl.checked &&
-        result.disciplin === "ryg-crawl") ||
-      (senior.checked &&
-        result.member &&
-        result.member.age >= 18 &&
-        brystSvoemning.checked &&
-        result.disciplin === "bryst-svømning") ||
-      (senior.checked &&
-        result.member &&
-        result.member.age >= 18 &&
-        butterfly.checked &&
-        result.disciplin === "butterfly") ||
-      (junior.checked && result.member && result.member.age < 18 && crawl.checked && result.disciplin === "crawl") ||
-      (junior.checked &&
-        result.member &&
-        result.member.age < 18 &&
-        rygCrawl.checked &&
-        result.disciplin === "ryg-crawl") ||
-      (junior.checked &&
-        result.member &&
-        result.member.age < 18 &&
-        brystSvoemning.checked &&
-        result.disciplin === "bryst-svømning") ||
-      (junior.checked &&
-        result.member &&
-        result.member.age < 18 &&
-        butterfly.checked &&
-        result.disciplin === "butterfly")
+    else if (senior.checked && result.member.age >= 18 && crawl.checked && result.disciplin === "crawl") {
+      return result;
+    } else if (senior.checked && result.member.age >= 18 && rygCrawl.checked && result.disciplin === "ryg-crawl") {
+      return result;
+    } else if (
+      senior.checked &&
+      result.member.age >= 18 &&
+      brystSvoemning.checked &&
+      result.disciplin === "bryst-svømning"
     ) {
       return result;
+    } else if (senior.checked && result.member.age >= 18 && butterfly.checked && result.disciplin === "butterfly") {
+      return result;
+    } else if (junior.checked && result.member.age < 18 && crawl.checked && result.disciplin === "crawl") {
+      return result;
+    } else if (junior.checked && result.member.age < 18 && rygCrawl.checked && result.disciplin === "ryg-crawl") {
+      return result;
+    } else if (
+      junior.checked &&
+      result.member.age < 18 &&
+      brystSvoemning.checked &&
+      result.disciplin === "bryst-svømning"
+    ) {
+      return result;
+    } else if (junior.checked && result.member.age < 18 && butterfly.checked && result.disciplin === "butterfly") {
+      return result;
     }
-
-    // If none of the filters match or result/member/age is undefined, return undefined
-    return undefined;
   }
 }
 
