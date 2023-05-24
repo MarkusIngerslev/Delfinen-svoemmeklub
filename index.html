@@ -460,13 +460,10 @@
         <p id="update-swimtime-coach-oldtime"></p>
         <label for="update-swimtime-coach">Ny svømme tid i ms. </label>
         <input type="number" name="coachUpdatetime" id="update-swimtime-coach" placeholder="skriv nu tid..." required />
-        <br />
         <label for="coachUpdateDate">Ny bedste svømmetid sat den: </label>
         <input id="coachUpdateDate" name="coachUpdateDate" type="text" required minlength="10" maxlength="10" />
-        <div id="coach-update-btn-container">
-          <button type="submit" class="btn-update-coach">Opdater</button>
-          <button type="button" class="btn-close-coach">Luk</button>
-        </div>
+        <button type="submit" class="btn-update-coach">Opdater</button>
+        <button type="button" class="btn-close-coach">Luk</button>
         <div id="coachExtraDatahidden" class="hidden">
           <input type="number" name="coachUpdateMemberId" id="coachUpdateMemberId" />
           <input type="text" name="coachUpdateDisciplin" id="coachUpdateDisciplin" />
