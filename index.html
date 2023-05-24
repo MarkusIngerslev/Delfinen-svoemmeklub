@@ -297,6 +297,9 @@
             </fieldset>
           </div>
           <h2>Atleter</h2>
+          <div class="btn-alignment">
+            <button class="btn-create-coach">Ny tid</button>
+          </div>
           <table id="coach-members">
             <thead>
               <tr>
@@ -347,6 +350,45 @@
         </ul>
         <button id="coach-dialog-btn-close">Luk</button>
       </article>
+    </dialog>
+
+    <!-- Coach dialog new time-->
+
+    <dialog id="newTimeDialog">
+      <button id="createTime-close-btn">X</button>
+      <h2>Opret ny tid</h2>
+      <br /><br />
+
+      <form action="" method="POST" id="form-create-new-time">
+        <label for="search-for-member">Medlem</label>
+        <input id="search-for-member" type="search" />
+        <p id="text-ny-tid">Disciplin</p>
+        <div>
+          <label for="new-time-discipline-opt1">Crawl</label>
+          <input id="new-time-discipline-opt1" type="radio" name="disciplin" required />
+          <label for="new-time-discipline-opt2">Ryg-Crawl</label>
+          <input id="new-time-discipline-opt2" type="radio" name="disciplin" required />
+          <label for="new-time-discipline-opt3">Brystsvømning</label>
+          <input id="new-time-discipline-opt3" type="radio" name="disciplin" required />
+          <label for="new-time-discipline-opt4">Butterfly</label>
+          <input id="new-time-discipline-opt4" type="radio" name="disciplin" required />
+        </div>
+        <p id="text-ny-tid2">Lokation</p>
+        <div>
+          <label for="new-time-tournament-opt1">Turnering</label>
+          <input id="new-time-tournament-opt1" type="radio" name="tournament" required />
+          <label for="new-time-tournament-opt2">Træning</label>
+          <input id="new-time-tournament-opt2" type="radio" name="tournament" required />
+        </div>
+        <label for="tournamentname">Navn på turnering</label>
+        <input id="tournamentname" type="text" />
+        <label for="new-time">Tid i ms.</label>
+        <input id="new-time" type="number" required />
+        <label for="date-of-new-time">Dato</label>
+        <input id="date-of-new-time" type="date" required />
+        <button id="submit-btn-create-time" type="submit">Send</button>
+        <button id="reset-btn-create-time" type="reset">Nulstil</button>
+      </form>
     </dialog>
 
     <!--Update member Chairman form-->

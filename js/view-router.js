@@ -26,12 +26,8 @@ function setActiveLink(view) {
 
 function hideAllViews() {
   // remove .active for all .view-content elements (all views) and .view-link elements (all links)
-  document
-    .querySelectorAll(".view-content")
-    .forEach((link) => link.classList.remove("active"));
-  document
-    .querySelectorAll(".view-link")
-    .forEach((link) => link.classList.remove("active"));
+  document.querySelectorAll(".view-content").forEach((link) => link.classList.remove("active"));
+  document.querySelectorAll(".view-link").forEach((link) => link.classList.remove("active"));
 }
 
 export { initViews };

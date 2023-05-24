@@ -1,5 +1,8 @@
 import { updateSwimtimeResult } from "./rest-data.js";
 import { results, updateMembersTable } from "./script.js";
+import { formatDate } from "./chairman.js";
+import { createNewTime } from "./helpers.js";
+import * as script from "./script.js";
 
 // ----- global variable ----- //
 
@@ -9,6 +12,12 @@ let coachResults;
 
 // ========== show competitve members ========== //
 //import { members } from "./script.js";
+document.querySelector(".btn-create-coach").addEventListener("click", newTimeClicked);
+const closeButtonCreateMember = document.querySelector("#createTime-close-btn");
+closeButtonCreateMember.addEventListener("click", function () {
+  const dialog = document.querySelector("#newTimeDialog");
+  dialog.close();
+});
 
 async function showCompetitiveMembers(results, members) {
   // event listener til svømmetid update
@@ -34,7 +43,6 @@ async function showCompetitiveMembers(results, members) {
   document.querySelector("#brystsvoemning-radio").addEventListener("change", showTopFiveSwimmers);
   document.querySelector("#butterfly-radio").addEventListener("change", showTopFiveSwimmers);
   document.querySelector("#sortBy-for-coach").addEventListener("change", showTopFiveSwimmers);
-  
 
   // ---------- GAMMEL FILTER KODE START eventlistenere ---------- \\
   // event listener til filtre
@@ -367,6 +375,8 @@ async function filterAgeGroup() {
   }
 }
 
+// If none of the filters match or result/member/age is undefined, return undefined
+
 // ---------- GAMMEL FILTER KODE START funktioner---------- \\
 // ========== filter ========== //
 // async function filterforCoach() {
@@ -453,5 +463,75 @@ async function filterAgeGroup() {
 //   return result.disciplin === "butterfly";
 // }
 // ---------- GAMMEL FILTER KODE SLUT funktioner---------- \\
+
+function newTimeClicked() {
+  console.log("ny tid trykket");
+  document.querySelector("#newTimeDialog").showModal();
+  document.querySelector("#newTimeDialog").scrollTop = 0;
+}
+
+document
+  .querySelector("form#form-create-new-time")
+  .addEventListener("submit", (event) => createNewTimeSubmitted(event, script.members));
+
+async function createNewTimeSubmitted(event, members) {
+  event.preventDefault();
+  const form = document.querySelector("form#form-create-new-time");
+  const result = {
+    timeMiliSeconds: form.querySelector("#new-time").value,
+    date: formatDate(form.querySelector("#date-of-new-time").value),
+    tournamentName: form.querySelector("#tournamentname").value,
+    memberId: null, // Initialize memberId as null
+  };
+
+  const memberName = form.querySelector("#search-for-member").value;
+  const member = members.find((m) => m.firstname + " " + m.lastname === memberName);
+  if (member) {
+    result.memberId = member.id;
+  }
+
+  const fullName = member ? member.firstname + " " + member.lastname : "";
+
+  // Set disciplime based on the selected radio button
+  const disciplineOption1 = form.querySelector("#new-time-discipline-opt1");
+  const disciplineOption2 = form.querySelector("#new-time-discipline-opt2");
+  const disciplineOption3 = form.querySelector("#new-time-discipline-opt3");
+  const disciplineOption4 = form.querySelector("#new-time-discipline-opt4");
+
+  if (disciplineOption1.checked) {
+    result.disciplin = "Crawl";
+  } else if (disciplineOption2.checked) {
+    result.disciplin = "Ryg-Crawl";
+  } else if (disciplineOption3.checked) {
+    result.disciplin = "Brystsvømning";
+  } else if (disciplineOption4.checked) {
+    result.disciplin = "Butterfly";
+  }
+
+  const tournamentOption1 = form.querySelector("#new-time-tournament-opt1");
+  const tournamentOption2 = form.querySelector("#new-time-tournament-opt2");
+
+  if (tournamentOption1.checked) {
+    result.tournament = true;
+  } else if (tournamentOption2.checked) {
+    result.tournament = false;
+
+    const response = await createNewTime(
+      result.date,
+      result.disciplin,
+      result.memberId,
+      result.timeMiliSeconds,
+      result.tournament,
+      result.tournamentName
+    );
+
+    if (response.ok) {
+      console.log("New time added");
+      updateMembersTable();
+    }
+
+    document.querySelector("#newTimeDialog").close();
+  }
+}
 
 export { showCompetitiveMembers };

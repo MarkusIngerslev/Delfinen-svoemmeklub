@@ -455,4 +455,4 @@ function applySorting() {
   showMembersChairman(sortedMembers);
 }
 
-export { showMembersChairman, createMemberClicked, createMemberSubmitted };
+export { showMembersChairman, createMemberClicked, createMemberSubmitted, formatDate };
