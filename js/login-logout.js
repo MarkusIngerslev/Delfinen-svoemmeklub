@@ -62,6 +62,7 @@ function determineWhatIsShownInNavbar() {
   }
 }
 
+// Luk fejlbesked i login
 function closeErrorMessgeLogIn() {
   document.querySelector("#error-message-log-in").close();
   console.log("fejlbesked lukkes");
