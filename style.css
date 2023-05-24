@@ -598,20 +598,20 @@ h3 {
 
 .topFiveHighlight tr:nth-child(2) {
   background-color: green;
-  opacity: 0.95;
+  opacity: 0.98;
 }
 
 .topFiveHighlight tr:nth-child(3) {
   background-color: green;
-  opacity: 0.9;
+  opacity: 0.96;
 }
 
 .topFiveHighlight tr:nth-child(4) {
   background-color: green;
-  opacity: 0.85;
+  opacity: 0.94;
 }
 
 .topFiveHighlight tr:nth-child(5) {
   background-color: green;
-  opacity: 0.8;
+  opacity: 0.92;
 }
