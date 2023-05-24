@@ -590,28 +590,28 @@ h3 {
   grid-column: 11;
 }
 
-/* Klasse der tilføjer baggrundsfarve til fem svømmere med bedste tider*/
+/* Klasser der tilføjer baggrundsfarve til fem svømmere med bedste tider*/
 .topFiveHighlight tr:nth-child(1) {
   background-color: green;
   opacity: 1.0;
 }
 
 .topFiveHighlight tr:nth-child(2) {
-  background-color: green;
-  opacity: 0.98;
+  background-color: rgb(23, 128, 0);
+  opacity: 0.97;
 }
 
 .topFiveHighlight tr:nth-child(3) {
-  background-color: green;
-  opacity: 0.96;
-}
-
-.topFiveHighlight tr:nth-child(4) {
-  background-color: green;
+  background-color: rgb(23, 128, 0);
   opacity: 0.94;
 }
 
+.topFiveHighlight tr:nth-child(4) {
+  background-color: rgb(23, 128, 0);
+  opacity: 0.91;
+}
+
 .topFiveHighlight tr:nth-child(5) {
-  background-color: green;
-  opacity: 0.92;
+  background-color: rgb(23, 128, 0);
+  opacity: 0.87;
 }
