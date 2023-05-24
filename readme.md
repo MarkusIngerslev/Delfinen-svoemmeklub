@@ -5,7 +5,7 @@
 
 # Svømmeklub Delfinen
 
-Vi har i dette projekt lavet en _"hjemmeside"_ for en svømmeklub [Delfinen](https://markusingerslev.github.io/Delfinen-svoemmeklub). Formålet for hjemmesiden er at 3 hoved figure i svømmeklubben skal kunne administrer deres respektive områder, uden for meget besvær.
+Vi har i dette projekt lavet en hjemmeside for en svømmeklubben [Delfinen](https://markusingerslev.github.io/Delfinen-svoemmeklub). Formålet for hjemmesiden er at 3 hoved figure i svømmeklubben skal kunne administrer deres respektive områder, uden for meget besvær.
 
 De tre hoved figure er en formand, en kasser og en svømme træner. De tre person har forskellige krav til hvad de gerne vil kunne gøre på hjemmesiden.
 
