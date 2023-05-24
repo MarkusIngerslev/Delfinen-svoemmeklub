@@ -44,8 +44,6 @@ De tre hoved figure er en formand, en kasser og en svømme træner. De tre perso
 
 - Jeg vil som træner gerne kunne tilføje nye resultater for konkurrence-svømmers nye bedste træningstider, indenfor individuelle svømme-discipliner.
 
----
-
 ## Brug af hjemmesiden
 
 Når man først åbner hjemmesiden op, vil man blive hvis **#home** siden. Dette er en side tiltænkt som en form for velkomst. Hvis man så vælger at kører musen over **_burger menuen_** eller **_de tre horisontale streger_**, så vil man kunne se 4 nye knapper. Disse knapper fører en vider til en ny side del af siden, der omhandler deres respektive navne. Denne del af hjemmesiden er fælles for alle der åbner den op.
@@ -55,8 +53,6 @@ Når man først åbner hjemmesiden op, vil man blive hvis **#home** siden. Dette
 ![homeSideBurgerMenu](./img/readmeImages/HomeSideBurgerMenu.jpg)
 
 </div>
-
----
 
 ### Login
 
@@ -75,8 +71,6 @@ Hvis man prøver at login med et forkert login, vil der blive vist et andet vind
 ![fejlLogin](./img/readmeImages/fejlLogin.jpg)
 
 </div>
-
----
 
 ### Formand
 
@@ -106,8 +100,6 @@ I toppen af siden er det muligt for formanden at tilføje nye medlemmer til klub
 
 </div>
 
----
-
 ### Kasser
 
 Når man i login vælger at login som kasser, vil kun en ny knap blive vist i _burgermenuen_. Denne nye knap er **_for kasseren_**. Når man klikker på knappen vil man man blive ført vider til der opfylder kravende, som kasseren haved stillet i hans userstories.
@@ -127,8 +119,6 @@ I toppen af siden er der en oversigt over de vigtigste ting, som kasseren skal h
 ![kasserSiden](./img/readmeImages/kasserSiden.jpg)
 
 </div>
-
----
 
 ### Træner
 
