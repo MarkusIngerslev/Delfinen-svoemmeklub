@@ -591,6 +591,27 @@ h3 {
 }
 
 /* Klasse der tilføjer baggrundsfarve til fem svømmere med bedste tider*/
-.topFiveHighlight tr:nth-child(-n + 5) {
-  background-color: yellow;
+.topFiveHighlight tr:nth-child(1) {
+  background-color: green;
+  opacity: 1.0;
+}
+
+.topFiveHighlight tr:nth-child(2) {
+  background-color: green;
+  opacity: 0.95;
+}
+
+.topFiveHighlight tr:nth-child(3) {
+  background-color: green;
+  opacity: 0.9;
+}
+
+.topFiveHighlight tr:nth-child(4) {
+  background-color: green;
+  opacity: 0.85;
+}
+
+.topFiveHighlight tr:nth-child(5) {
+  background-color: green;
+  opacity: 0.8;
 }
