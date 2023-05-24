@@ -1,7 +1,8 @@
 import { updateSwimtimeResult } from "./rest-data.js";
-import { results, updateMembersTable, members } from "./script.js";
+import { updateMembersTable } from "./script.js";
 import { formatDate } from "./chairman.js";
 import { createNewTime } from "./helpers.js";
+import * as script from "./script.js";
 
 // ----- global variable ----- //
 
@@ -11,7 +12,6 @@ let coachResults;
 
 // ========== show competitve members ========== //
 //import { members } from "./script.js";
-document.querySelector("form#form-create-new-time").addEventListener("submit", createNewTimeSubmitted);
 document.querySelector(".btn-create-coach").addEventListener("click", newTimeClicked);
 const closeButtonCreateMember = document.querySelector("#createTime-close-btn");
 closeButtonCreateMember.addEventListener("click", function () {
@@ -322,15 +322,27 @@ function newTimeClicked() {
   document.querySelector("#newTimeDialog").scrollTop = 0;
 }
 
-async function createNewTimeSubmitted(event) {
+document
+  .querySelector("form#form-create-new-time")
+  .addEventListener("submit", (event) => createNewTimeSubmitted(event, script.members));
+
+async function createNewTimeSubmitted(event, members) {
   event.preventDefault();
   const form = document.querySelector("form#form-create-new-time");
   const result = {
-    memberId: form.querySelector("#search-for-member").value,
     timeMiliSeconds: form.querySelector("#new-time").value,
     date: formatDate(form.querySelector("#date-of-new-time").value),
     tournamentName: form.querySelector("#tournamentname").value,
+    memberId: null, // Initialize memberId as null
   };
+
+  const memberName = form.querySelector("#search-for-member").value;
+  const member = members.find((m) => m.firstname + " " + m.lastname === memberName);
+  if (member) {
+    result.memberId = member.id;
+  }
+
+  const fullName = member ? member.firstname + " " + member.lastname : "";
 
   // Set disciplime based on the selected radio button
   const disciplineOption1 = form.querySelector("#new-time-discipline-opt1");
@@ -368,37 +380,10 @@ async function createNewTimeSubmitted(event) {
     if (response.ok) {
       console.log("New time added");
       updateMembersTable();
-      console.log(results);
     }
 
     document.querySelector("#newTimeDialog").close();
   }
 }
-
-function handleMemberSearchInput() {
-  const searchInput = document.querySelector("#search-for-member");
-  const memberOptions = document.querySelector("#member-options");
-
-  // Clear existing options
-  memberOptions.innerHTML = "";
-
-  // Filter members based on search input
-  const filteredMembers = members.filter(
-    (member) =>
-      member.firstname.toLowerCase().includes(searchInput.value.toLowerCase()) ||
-      member.lastname.toLowerCase().includes(searchInput.value.toLowerCase())
-  );
-
-  // Add options to the dropdown
-  filteredMembers.forEach((member) => {
-    const option = document.createElement("option");
-    option.value = member.id;
-    memberOptions.appendChild(option);
-  });
-}
-
-// Add event listener to the search input
-const searchInput = document.querySelector("#search-for-member");
-searchInput.addEventListener("input", handleMemberSearchInput);
 
 export { showCompetitiveMembers };
