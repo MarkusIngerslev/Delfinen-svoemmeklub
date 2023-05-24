@@ -1,7 +1,7 @@
 import { prepareMembersData, prepareResultsData } from "./helpers.js";
 
 // ========== Global endpoint variable til firebase========== //
-const endpoint = "https://database-members-default-rtdb.firebaseio.com/";
+const endpoint = "https://crud-1st-semester-projekt-default-rtdb.firebaseio.com/";
 // const endpoint = "https://database-members-default-rtdb.firebaseio.com/";
 // const endpoint = "../members";
 
