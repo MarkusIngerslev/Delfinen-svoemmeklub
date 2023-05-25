@@ -515,8 +515,12 @@ async function createNewTimeSubmitted(event, members) {
     result.tournament = true;
   } else if (tournamentOption2.checked) {
     result.tournament = false;
+  }
 
-    const response = await createNewTime(
+  let response;
+
+  if (member && fullName === memberName) {
+    response = await createNewTime(
       result.date,
       result.disciplin,
       result.memberId,
@@ -524,14 +528,20 @@ async function createNewTimeSubmitted(event, members) {
       result.tournament,
       result.tournamentName
     );
-
-    if (response.ok) {
-      console.log("New time added");
-      updateMembersTable();
-    }
-
-    document.querySelector("#newTimeDialog").close();
+  } else if (!member || fullName !== memberName) {
+    const errorElement = document.querySelector("#error-message");
+    errorElement.textContent = "Medlem findes ikke"; // Update error message text
+    errorElement.style.display = "block"; // Show the error element
+    console.log(errorElement.textContent);
+    setTimeout(() => {
+      errorElement.style.display = "none"; // Hide the error element
+    }, 2000);
   }
+  if (response && response.ok) {
+    console.log("New time added");
+    updateMembersTable();
+  }
+  document.querySelector("#newTimeDialog").close();
 }
 
 export { showCompetitiveMembers };
