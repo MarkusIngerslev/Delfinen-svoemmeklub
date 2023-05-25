@@ -235,9 +235,8 @@ label {
 
 table,
 th {
-  border: 2px solid aquamarine;
+  /* border: 2px solid aquamarine; */
   width: auto;
-  align-items: center;
   text-shadow: 4px 4px 4px rgba(76, 57, 241, 0.1);
   font-family: Arial, sans-serif;
   font-size: 16px;
@@ -248,9 +247,7 @@ th {
   padding: 4px;
 }
 td {
-  border: 1px solid aquamarine;
-  width: auto;
-  align-items: center;
+  /* border: 1px solid aquamarine; */
   text-shadow: 4px 4px 4px rgba(76, 57, 241, 0.1);
   font-family: Arial, sans-serif;
   font-size: 12px;
@@ -262,8 +259,9 @@ td {
   background-image: url(img/baggrund.jpg);
   background-size: 100%;
   background-position: center;
-  width: 100%;
-  height: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* width: 100%; */
   padding-left: 180px;
   padding-top: 50px;
   padding-bottom: 250px;
@@ -550,6 +548,44 @@ h3 {
   opacity: 1;
 }
 
+/* update swimtime styling */
+
+#update-swimtime-coach-dialog {
+  width: 600px;
+  background-color: cornflowerblue;
+}
+
+#update-swimtime-coach-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  text-shadow: 4px 4px 4px rgba(76, 57, 241, 0.1);
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  color: #070707;
+  background-color: cornflowerblue;
+}
+
+#update-swimtime-coach-form label {
+  font-size: 14px;
+  padding: 10px;
+  text-align: left;
+  margin-left: 5%;
+}
+
+#update-swimtime-coach-form input {
+  justify-self: end;
+  margin: 2% 0;
+  margin-right: 5%;
+  width: 70%;
+}
+
+#update-swimtime-coach-form button {
+  margin-top: 6px;
+  width: 100%;
+  height: auto;
+}
 /* update member chairman styling */
 
 /* delete member chairman styling */
@@ -626,9 +662,30 @@ h3 {
   grid-column: 11;
 }
 
-/* Klasse der tilføjer baggrundsfarve til fem svømmere med bedste tider*/
-.topFiveHighlight tr:nth-child(-n + 5) {
-  background-color: yellow;
+/* Klasser der tilføjer baggrundsfarve til fem svømmere med bedste tider*/
+.topFiveHighlight tr:nth-child(1) {
+  background-color: green;
+  opacity: 1;
+}
+
+.topFiveHighlight tr:nth-child(2) {
+  background-color: rgb(23, 128, 0);
+  opacity: 0.97;
+}
+
+.topFiveHighlight tr:nth-child(3) {
+  background-color: rgb(23, 128, 0);
+  opacity: 0.94;
+}
+
+.topFiveHighlight tr:nth-child(4) {
+  background-color: rgb(23, 128, 0);
+  opacity: 0.91;
+}
+
+.topFiveHighlight tr:nth-child(5) {
+  background-color: rgb(23, 128, 0);
+  opacity: 0.87;
 }
 
 #error-message {
