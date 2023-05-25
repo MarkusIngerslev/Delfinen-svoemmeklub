@@ -74,7 +74,7 @@ function addNewLinksToNavBarForChairman() {
     /*html*/
     `<section>
           <a href="#forChairman" class="view-link">For formanden</a>
-          <a href="#forCashier" class="view-link">For kasseren</a>
+          <a href="#forCashier" class="view-link">For kassereren</a>
           <a href="#for-coach-section" class="view-link" id="for-coach-btn">For trænerne</a>
         </section>
      `;
